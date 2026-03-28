@@ -1,5 +1,4 @@
-
-resource "aws_instance" "MyFirstInstnace" {
+resource "aws_instance" "MyFirstInstnac" {
   ami           = var.ami
   instance_type = "t2.micro"
 
