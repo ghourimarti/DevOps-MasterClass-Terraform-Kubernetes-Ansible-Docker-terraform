@@ -34,7 +34,7 @@ resource "aws_instance" "MyFirstInstnace" {
   instance_type = "t2.micro"
 
   tags = {
-    # Name = "demoinstnce-${count.index}"
-    Name = "Zohana"
+    Name = "demoinstnce-${count.index}"
+    # Name = "Zohana"
   }
 }
