@@ -18,7 +18,7 @@ provider "aws" {
 }
 
 # 
-resource "aws_instance" "MyFirstInstnace" {
+resource "aws_instance" "zohan-kino" {
   ami           = "ami-02633e712f6dcb86f"
   instance_type = "t2.micro"
 }
