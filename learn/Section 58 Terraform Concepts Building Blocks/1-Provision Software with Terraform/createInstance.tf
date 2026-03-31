@@ -5,7 +5,7 @@ resource "aws_key_pair" "levelup_key" {
 }
 
 resource "aws_instance" "MyFirstInstnace" {
-  ami           = lookup(var.AMIS, var.AWS_REGION)
+  ami           = lookup(var.AMIS, var.aws_region)
   instance_type = "t2.micro"
   key_name      = aws_key_pair.levelup_key.key_name
 
