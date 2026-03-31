@@ -9,7 +9,7 @@ resource "aws_key_pair" "levelup_key" {
 ######################################################
 #               Resource 2 aws_security_group
 ######################################################
-resource "aws_security_group" "allowww_ssh_http" {
+resource "aws_security_group" "allow_ssh_http" {
   name        = "allow_ssh_http"
   description = "Allow SSH and HTTP traffic"
 
@@ -54,8 +54,37 @@ resource "aws_instance" "MyFirstInstnace" {
   vpc_security_group_ids      = [aws_security_group.allowww_ssh_http.id]
   associate_public_ip_address = true
 
+  # Optional: shutdown behavior
+  instance_initiated_shutdown_behavior = "stop"
+
+  # Optional: enable detailed monitoring
+  monitoring = true
+
+  # Optional: configure EC2 metadata service
+  metadata_options {
+    http_endpoint               = "enabled"
+    http_tokens                 = "required"
+    http_put_response_hop_limit = 2
+    instance_metadata_tags      = "enabled"
+  }
+
+  # Optional: configure root EBS volume
+  root_block_device {
+    volume_size           = 20
+    volume_type           = "gp3"
+    delete_on_termination = true
+    encrypted             = true
+
+    tags = {
+      Name = "zohee_root_disk"
+    }
+  }
+
+
   tags = {
-    Name = "zohee_instance"
+    Name        = "zohee_instance"
+    Environment = "dev"
+    Project     = "terraform-learning"
   }
 
   provisioner "file" {
