@@ -42,5 +42,11 @@ export AWS_DEFAULT_REGION=""
 
 ssh root@143.244.137.104
 
+############################################################
+#      S58 Terraform Concepts - Building Blocks
+############################################################
+
+ssh-keygen -f levelup_key
+
 
 
