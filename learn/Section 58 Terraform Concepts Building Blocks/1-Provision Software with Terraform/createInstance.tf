@@ -51,7 +51,7 @@ resource "aws_instance" "MyFirstInstnace" {
   ami           = lookup(var.AMIS, var.aws_region)
   instance_type = "t2.micro"
   key_name      = aws_key_pair.levelup_key.key_name
-  vpc_security_group_ids      = [aws_security_group.allowww_ssh_http.id]
+  vpc_security_group_ids      = [aws_security_group.allow_ssh_http.id]
   associate_public_ip_address = true
 
   # Optional: shutdown behavior
