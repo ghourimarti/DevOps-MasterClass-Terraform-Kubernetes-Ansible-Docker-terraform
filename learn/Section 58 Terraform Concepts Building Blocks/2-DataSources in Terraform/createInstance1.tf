@@ -1,5 +1,14 @@
 
+######################################################
+#               Resource 1 data aws_availability_zones
+######################################################
+
 data "aws_availability_zones" "avilable" {}
+
+
+######################################################
+#               Resource 2 data aws_ami
+######################################################
 
 data "aws_ami" "latest-ubuntu" {
   most_recent = true
@@ -16,6 +25,10 @@ data "aws_ami" "latest-ubuntu" {
   }
 }
 
+
+######################################################
+#               Resource 2 aws_instance
+######################################################
 
 resource "aws_instance" "MyFirstInstnace" {
   ami           = data.aws_ami.latest-ubuntu.id
