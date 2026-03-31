@@ -48,5 +48,9 @@ ssh root@143.244.137.104
 
 ssh-keygen -f levelup_key
 
+# got to EC2 --> Network and security --> Security Groups
+# --> Edit inbound Rules --> 
+# you Linux machine (digital ocean or Virtual box machine) IP
+
 
 

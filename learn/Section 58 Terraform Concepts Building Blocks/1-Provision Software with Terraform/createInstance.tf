@@ -1,9 +1,52 @@
-
+######################################################
+#               Resource 1 aws_key_pair
+######################################################
 resource "aws_key_pair" "levelup_key" {
-    key_name = "levelup_key"
-    public_key = file(var.PATH_TO_PUBLIC_KEY)
+  key_name = "levelup_key"
+  public_key = file(var.PATH_TO_PUBLIC_KEY)
 }
 
+######################################################
+#               Resource 2 aws_security_group
+######################################################
+resource "aws_security_group" "allow_ssh_http" {
+  name        = "allow_ssh_http"
+  description = "Allow SSH and HTTP traffic"
+
+  ingress {
+    description = "SSH from anywhere"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    description = "HTTP from anywhere"
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    description = "Allow all outbound traffic"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "allow_ssh_http"
+  }
+}
+
+
+######################################################
+#               Resource 3 aws_instance
+######################################################
+# Resource 3 aws_instance
 resource "aws_instance" "MyFirstInstnace" {
   ami           = lookup(var.AMIS, var.aws_region)
   instance_type = "t2.micro"
@@ -37,9 +80,11 @@ resource "aws_instance" "MyFirstInstnace" {
 
 
 
-
-
-
+######################################################
+######################################################
+######################################################
+######################################################
+######################################################
 
 
 
