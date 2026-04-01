@@ -51,11 +51,11 @@ output "____________________aws_ip_ranges____________________" {
 }
 
 # 
-output "____________________aws_security_group____________________" {
-  value = {
-    create_da = data.aws_security_group.sg-custom_us_east
-  }
-}
+# output "____________________aws_security_group____________________" {
+#   value = {
+#     create_da = data.aws_security_group.sg-custom_us_east
+#   }
+# }
 
 
 
