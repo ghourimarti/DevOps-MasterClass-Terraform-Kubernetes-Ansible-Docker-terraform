@@ -35,7 +35,8 @@ resource "aws_security_group" "sg-custom_us_east" {
 #               Resource 3 output
 ######################################################
 
-output "____________________all_cidr_blocks____________________" {
+# aws_ip_ranges
+output "____________________aws_ip_ranges____________________" {
   value = {
     create_date = data.aws_ip_ranges.us_east_ip_range.create_date
     sync_token  = data.aws_ip_ranges.us_east_ip_range.sync_token
@@ -45,5 +46,12 @@ output "____________________all_cidr_blocks____________________" {
     id  = data.aws_ip_ranges.us_east_ip_range.id
     # cidr_blocks = data.aws_ip_ranges.us_east_ip_range.cidr_blocks
     # ipv6_cidr_blocks = data.aws_ip_ranges.us_east_ip_range.ipv6_cidr_blocks
+  }
+}
+
+# 
+output "____________________aws_security_group____________________" {
+  value = {
+    create_date = data.aws_security_group.sg-custom_us_east
   }
 }
