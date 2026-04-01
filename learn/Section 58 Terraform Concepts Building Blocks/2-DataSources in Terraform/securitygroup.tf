@@ -35,7 +35,7 @@ resource "aws_security_group" "sg-custom_us_east" {
 #               Resource 3 output
 ######################################################
 
-output "<------------------ all_cidr_blocks ---------------->" {
+output "<------------------all_cidr_blocks---------------->" {
 #   value = data.aws_ip_ranges.us_east_ip_range.cidr_blocks
   value = data.aws_ip_ranges.us_east_ip_range
 }
