@@ -53,7 +53,7 @@ output "____________________aws_instance____________________" {
     instance_type = aws_instance.MyFirstInstnace.instance_type
     availability_zone = data.aws_availability_zones.avilable.names[0]
     tags = aws_instance.MyFirstInstnace.tags  
-    owner = data.aws_ami.latest-ubuntu.owners[0]
-
+    owner = data.aws_ami.latest-ubuntu.owners
+    instance_type = aws_instance.MyFirstInstnace
   }
 }
