@@ -35,11 +35,6 @@ resource "aws_security_group" "sg-custom_us_east" {
 #               Resource 3 output
 ######################################################
 
-# output "____________________all_cidr_blocks____________________" {
-# #   value = data.aws_ip_ranges.us_east_ip_range.cidr_blocks
-#   value = data.aws_ip_ranges.us_east_ip_range
-# }
-
 output "____________________all_cidr_blocks____________________" {
   value = {
     create_date = data.aws_ip_ranges.us_east_ip_range.create_date
@@ -48,7 +43,7 @@ output "____________________all_cidr_blocks____________________" {
     services  = data.aws_ip_ranges.us_east_ip_range.services
     url  = data.aws_ip_ranges.us_east_ip_range.url
     id  = data.aws_ip_ranges.us_east_ip_range.id
-    cidr_blocks = data.aws_ip_ranges.us_east_ip_range.cidr_blocks 
-    ipv6_cidr_blocks = data.aws_ip_ranges.us_east_ip_range.ipv6_cidr_blocks
+    # cidr_blocks = data.aws_ip_ranges.us_east_ip_range.cidr_blocks
+    # ipv6_cidr_blocks = data.aws_ip_ranges.us_east_ip_range.ipv6_cidr_blocks
   }
 }
