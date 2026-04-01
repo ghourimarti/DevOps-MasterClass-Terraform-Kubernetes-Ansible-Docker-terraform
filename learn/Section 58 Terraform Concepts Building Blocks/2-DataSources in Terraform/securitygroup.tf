@@ -32,7 +32,7 @@ resource "aws_security_group" "sg-custom_us_east" {
 
 
 ######################################################
-#               Resource 3output
+#               Resource 3 output
 ######################################################
 
 output "all_cidr_blocks" {
