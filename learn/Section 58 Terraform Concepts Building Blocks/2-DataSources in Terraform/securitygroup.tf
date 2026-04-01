@@ -61,7 +61,7 @@ output "____________________aws_security_group____________________" {
     egress_rules        = aws_security_group.sg_custom_us_east.egress
     region              = aws_security_group.sg_custom_us_east.region
     tags                = aws_security_group.sg_custom_us_east.tags_all
-    # security_group_id   = aws_security_group.sg_custom_us_east
+    SECURITY_GROUP   = aws_security_group.sg_custom_us_east
 
   }
 }
