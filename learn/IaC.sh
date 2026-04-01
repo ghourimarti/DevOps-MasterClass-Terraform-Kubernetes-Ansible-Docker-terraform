@@ -37,6 +37,7 @@ clear ; git pull
 
 clear ; terraform destroy ; echo "<----------------------- init --------------------------->" ; terraform init ; echo "<------------------------- plan ------------------------->" ; terraform plan ; echo "<---------------------------- apply ---------------------->" ; terraform apply; echo "<-------------------------------------------------->" ;
 
+clear ; git add . ; git commit -m "pull ... " ; git push
 
 # Provide Creds in Env Variables
 export AWS_ACCESS_KEY_ID=""  
