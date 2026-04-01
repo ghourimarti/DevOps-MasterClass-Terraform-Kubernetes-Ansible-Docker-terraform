@@ -41,3 +41,19 @@ resource "aws_instance" "MyFirstInstnace" {
   }
 
 }
+
+
+######################################################
+#               Resource 2 aws_instance
+######################################################
+
+output "____________________aws_instance____________________" {
+  value = {
+    ami           = data.aws_ami.latest-ubuntu.id
+    instance_type = aws_instance.MyFirstInstnace.instance_type
+    availability_zone = data.aws_availability_zones.avilable.names[0]
+    tags = aws_instance.MyFirstInstnace.tags  
+    owner = data.aws_ami.latest-ubuntu.owners[0]
+
+  }
+}
