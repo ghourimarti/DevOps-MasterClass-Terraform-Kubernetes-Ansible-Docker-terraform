@@ -36,24 +36,25 @@ resource "aws_security_group" "sg-custom_us_east" {
 ######################################################
 
 output "all_cidr_blocks" {
-  value = data.aws_ip_ranges.us_east_ip_range.cidr_blocks
+#   value = data.aws_ip_ranges.us_east_ip_range.cidr_blocks
+  value = data.aws_ip_ranges.us_east_ip_range
 }
 
-output "first_10_cidr_blocks" {
-  value = slice(
-    data.aws_ip_ranges.us_east_ip_range.cidr_blocks,
-    0,
-    10
-  )
-}
+# output "first_10_cidr_blocks" {
+#   value = slice(
+#     data.aws_ip_ranges.us_east_ip_range.cidr_blocks,
+#     0,
+#     10
+#   )
+# }
 
-output "first_cidr_block" {
-  value = data.aws_ip_ranges.us_east_ip_range.cidr_blocks[0]
-}
+# output "first_cidr_block" {
+#   value = data.aws_ip_ranges.us_east_ip_range.cidr_blocks[0]
+# }
 
-output "metadata" {
-  value = {
-    create_date = data.aws_ip_ranges.us_east_ip_range.create_date
-    sync_token  = data.aws_ip_ranges.us_east_ip_range.sync_token
-  }
-}
+# output "metadata" {
+#   value = {
+#     create_date = data.aws_ip_ranges.us_east_ip_range.create_date
+#     sync_token  = data.aws_ip_ranges.us_east_ip_range.sync_token
+#   }
+# }
