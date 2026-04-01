@@ -37,7 +37,7 @@ resource "aws_security_group" "sg-custom_us_east" {
 
 output "____________________all_cidr_blocks____________________" {
 #   value = data.aws_ip_ranges.us_east_ip_range.cidr_blocks
-  value = data.aws_ip_ranges
+  value = data.aws_ip_ranges.us_east_ip_range
 }
 
 # output "first_10_cidr_blocks" {
