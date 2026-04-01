@@ -61,5 +61,5 @@ ssh -i levelup_key ubuntu@ec2-54-175-74-216.compute-1.amazonaws.com
 # --> Edit inbound Rules --> 
 # you Linux machine (digital ocean or Virtual box machine) IP
 
-
+# https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami.html?finding-an-ami-aws-cli
 
