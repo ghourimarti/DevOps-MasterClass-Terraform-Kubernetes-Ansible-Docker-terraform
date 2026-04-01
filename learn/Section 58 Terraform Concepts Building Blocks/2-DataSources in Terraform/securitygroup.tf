@@ -9,6 +9,9 @@ data "aws_ip_ranges" "us_east_ip_range" {
     services = ["ec2"]
 }
 
+data "aws_ip_ranges" "us_east_ip_range2" {
+    services = ["ec2"]
+}
 
 ######################################################
 #               Resource 2 aws_security_group
@@ -47,6 +50,7 @@ output "____________________aws_ip_ranges____________________" {
     id  = data.aws_ip_ranges.us_east_ip_range.id
     # cidr_blocks = data.aws_ip_ranges.us_east_ip_range.cidr_blocks
     # ipv6_cidr_blocks = data.aws_ip_ranges.us_east_ip_range.ipv6_cidr_blocks
+    us_east_ip_range2 = data.aws_ip_ranges.us_east_ip_range2
   }
 }
 
