@@ -7,8 +7,7 @@ terraform.tfvars
 !terraform.tfvars.example
 
 # Terraform local state
-*.tfstate
-*.tfstate.*
+
 
 # Terraform working directory
 .terraform/
