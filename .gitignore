@@ -7,6 +7,10 @@ terraform.tfvars
 !terraform.tfvars.example
 
 # Terraform local state
+<<<<<<< HEAD
+=======
+
+>>>>>>> 85e2997571f4bdbe90d1bcae256a712d5a5e9b65
 
 # Terraform working directory
 .terraform/
