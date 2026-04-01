@@ -44,7 +44,7 @@ resource "aws_instance" "MyFirstInstnace" {
 
 
 ######################################################
-#               Resource 2 aws_instance
+#               Output aws_instance
 ######################################################
 
 output "____________________aws_instance____________________" {
@@ -54,6 +54,6 @@ output "____________________aws_instance____________________" {
     availability_zone = data.aws_availability_zones.avilable.names[0]
     tags = aws_instance.MyFirstInstnace.tags  
     owner = data.aws_ami.latest-ubuntu.owners
-    instance_type = aws_instance.MyFirstInstnace
+    INSTANCE_COMLPLETION_DETAILS_________ = aws_instance.MyFirstInstnace
   }
 }
