@@ -53,21 +53,12 @@ output "____________________aws_ip_ranges____________________" {
 # 
 output "____________________aws_security_group____________________" {
   value = {
-    security_group_id   = aws_security_group.sg_custom_us_east.id
+    security_group_id   = aws_security_group.sg_custom_us_east
     security_group_name = aws_security_group.sg_custom_us_east.name
     security_group_arn  = aws_security_group.sg_custom_us_east.arn
     description         = aws_security_group.sg_custom_us_east.description
 
     ingress_rules = aws_security_group.sg_custom_us_east.ingress
     egress_rules  = aws_security_group.sg_custom_us_east.egress
-
-    create_date = data.aws_ip_ranges.us_east_ip_range.create_date
-    sync_token  = data.aws_ip_ranges.us_east_ip_range.sync_token
-
-    first_5_cidr_blocks = slice(
-      data.aws_ip_ranges.us_east_ip_range.cidr_blocks,
-      0,
-      5
-    )
   }
 }
