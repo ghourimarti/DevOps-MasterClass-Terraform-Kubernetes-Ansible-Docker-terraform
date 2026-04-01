@@ -14,7 +14,7 @@ data "aws_ip_ranges" "us_east_ip_range" {
 #               Resource 2 aws_security_group
 ######################################################
 
-resource "aws_security_group" "sg-custom_us_east" {
+resource "aws_security_group" "sg_custom_us_east" {
     name = "custom_us_east"
     description = "Allow HTTPS from AWS EC2 IP ranges in us-east-1 and us-east-2"
 
