@@ -35,7 +35,7 @@ terraform destroy
 clear ; git add . ; git commit -m "v1 ... " ; git push
 clear ; git pull
 
-terraform destroy ; echo "<----------------------- init --------------------------->" ; terraform init ; echo "<------------------------- plan ------------------------->" ; terraform plan ; echo "<---------------------------- apply ---------------------->" ; terraform apply; echo "<-------------------------------------------------->" ;
+clear ; terraform destroy ; echo "<----------------------- init --------------------------->" ; terraform init ; echo "<------------------------- plan ------------------------->" ; terraform plan ; echo "<---------------------------- apply ---------------------->" ; terraform apply; echo "<-------------------------------------------------->" ;
 
 
 # Provide Creds in Env Variables
