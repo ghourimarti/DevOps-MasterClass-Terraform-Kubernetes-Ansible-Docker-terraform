@@ -10,7 +10,7 @@ data "aws_availability_zones" "avilable" {}
 #               Resource 2 data aws_ami
 ######################################################
 
-data "aws_ami" "latest-ubuntu" {
+data "aws_ami" "latest_ubuntu" {
   most_recent = true
   owners = ["099720109477"]
 
@@ -32,7 +32,7 @@ data "aws_ami" "latest-ubuntu" {
 ######################################################
 
 resource "aws_instance" "MyFirstInstnace" {
-  ami           = data.aws_ami.latest-ubuntu.id # lookup(var.AMIS, var.aws_region) 
+  ami           = data.aws_ami.latest_ubuntu.id # lookup(var.AMIS, var.aws_region) 
   instance_type = "t2.micro"
   availability_zone = data.aws_availability_zones.avilable.names[0]
 
