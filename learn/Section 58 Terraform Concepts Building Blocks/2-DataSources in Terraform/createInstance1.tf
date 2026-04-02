@@ -32,7 +32,7 @@ data "aws_ami" "latest_ubuntu" {
 ######################################################
 
 resource "aws_instance" "MyFirstInstnace" {
-  ami           = lookup(var.AMIS, var.aws_region) # data.aws_ami.latest_ubuntu.id # lookup(var.AMIS, var.aws_region) 
+  ami           = data.aws_ami.latest_ubuntu.id # lookup(var.AMIS, var.aws_region) 
   instance_type = "t2.micro"
   availability_zone = data.aws_availability_zones.avilable.names[0]
 
