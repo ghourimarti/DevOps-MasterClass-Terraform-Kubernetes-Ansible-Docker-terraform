@@ -12,7 +12,7 @@ data "aws_availability_zones" "avilable" {}
 
 data "aws_ami" "latest-ubuntu" {
   most_recent = true
-  owners = ["099720109477"]
+  owners = ["amazon"] #["099720109477"]
 
   filter {
     name = "name"
@@ -33,7 +33,7 @@ data "aws_ami" "latest-ubuntu" {
 
 resource "aws_instance" "MyFirstInstnace" {
   ami           = data.aws_ami.latest-ubuntu.id # lookup(var.AMIS, var.aws_region) 
-  instance_type = "t3.micro"
+  instance_type = "t2.micro"
   availability_zone = data.aws_availability_zones.avilable.names[0]
 
   tags = {
