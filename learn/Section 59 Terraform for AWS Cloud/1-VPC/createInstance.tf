@@ -17,7 +17,7 @@ resource "aws_key_pair" "levelup_key" {
 resource "aws_instance" "Instnace-public-1" {
   ami           = lookup(var.AMIS, var.aws_region)
   instance_type = "t2.micro"
-  key_name      = aws_key_p   air.levelup_key.key_name
+  key_name      = aws_key_pair.levelup_key.key_name
 
   vpc_security_group_ids = [aws_security_group.allow-levelup-ssh.id]
   subnet_id = aws_subnet.levelupvpc-public-1.id
