@@ -1,5 +1,5 @@
 #################################################
-#                 1. Create AWS VPC
+#  1. Create AWS VPC
 #################################################
 resource "aws_vpc" "levelupvpc" {
   cidr_block       = "10.0.0.0/16"
@@ -14,7 +14,7 @@ resource "aws_vpc" "levelupvpc" {
 }
 
 #################################################
-#                 2. Create Public Subnets
+#  2. Create Public Subnets: vpc ---> public subnet
 #################################################
 # Public Subnets in Custom VPC
 resource "aws_subnet" "levelupvpc-public-1" {
@@ -51,7 +51,7 @@ resource "aws_subnet" "levelupvpc-public-3" {
 }
 
 #################################################
-#                 3. Create Private Subnets
+# 3. Create Private Subnets: vpc ---> private subnet
 #################################################
 # Custom internet GatewayPrivate Subnets in Custom VPC
 
@@ -89,7 +89,7 @@ resource "aws_subnet" "levelupvpc-private-3" {
 }
 
 #################################################
-#                 4. Create Internet Gateway
+#  4. Create Internet Gateway
 #################################################
 # Custom internet Gateway
 resource "aws_internet_gateway" "levelup-gw" {
@@ -101,7 +101,7 @@ resource "aws_internet_gateway" "levelup-gw" {
 }
 
 #################################################
-#                 5. Create Route Table
+#  5. Create Route Table 
 #################################################
 # Creating Table for the Custom VPC
 resource "aws_route_table" "levelup-public" {
@@ -112,12 +112,12 @@ resource "aws_route_table" "levelup-public" {
   }
 
   tags = {
-    Name = "levelup-public-1"
+    Name = "levelup-public"
   }
 }
 
 ###################################################
-#                 6. Create Route Table Association
+# 6. Create Route Table Association: levelupvpc-public-1 ---> 
 ###################################################
 # 
 resource "aws_route_table_association" "levelup-public-1-a" {
