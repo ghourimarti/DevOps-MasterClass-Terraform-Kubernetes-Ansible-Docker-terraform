@@ -64,5 +64,6 @@ output "____________________aws_nat_gateway___________________" {
     aws_route_table_association_1a____________________________ = aws_route_table_association.level-private-1-a
     aws_route_table_association_1b____________________________ = aws_route_table_association.level-private-1-b
     aws_route_table_association_1c____________________________ = aws_route_table_association.level-private-1-c
+    allocation_id = aws_eip.levelup-nat.id
   }
 }
