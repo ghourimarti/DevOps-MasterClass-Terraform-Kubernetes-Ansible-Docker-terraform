@@ -3,7 +3,7 @@
 #################################################
 #Define External IP 
 resource "aws_eip" "levelup-nat" {
-  vpc = true
+  domain = "vpc" #vpc = true
 }
 
 
