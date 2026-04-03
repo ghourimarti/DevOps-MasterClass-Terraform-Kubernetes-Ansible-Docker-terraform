@@ -100,8 +100,10 @@ resource "aws_internet_gateway" "levelup-gw" {
   }
 }
 
+
+# 5,6 = levelupvpc-public-1,2,3(subnet) ---> levelup-public(route table) ---> levelup-gw(internet gateway)
 #################################################
-#  5. Create Route Table 
+#  5. Create Route Table: levelup-public ---> levelup-gw
 #################################################
 # Creating Table for the Custom VPC
 resource "aws_route_table" "levelup-public" {
@@ -117,7 +119,7 @@ resource "aws_route_table" "levelup-public" {
 }
 
 ###################################################
-# 6. Create Route Table Association: levelupvpc-public-1 ---> 
+# 6. Create Route Table Association: levelupvpc-public-1,2,3 ---> levelup-public
 ###################################################
 # 
 resource "aws_route_table_association" "levelup-public-1-a" {
