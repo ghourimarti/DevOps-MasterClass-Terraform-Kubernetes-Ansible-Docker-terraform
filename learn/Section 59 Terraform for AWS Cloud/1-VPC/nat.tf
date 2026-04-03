@@ -1,14 +1,25 @@
+#################################################
+#                 1. Create aws_eip
+#################################################
 #Define External IP 
 resource "aws_eip" "levelup-nat" {
   vpc = true
 }
 
+
+#################################################
+#                 2. Create aws_nat_gateway
+#################################################
 resource "aws_nat_gateway" "levelup-nat-gw" {
   allocation_id = aws_eip.levelup-nat.id
   subnet_id     = aws_subnet.levelupvpc-public-1.id
   depends_on    = [aws_internet_gateway.levelup-gw]
 }
 
+
+#################################################
+#                 3. Create aws_route_table
+#################################################
 resource "aws_route_table" "levelup-private" {
   vpc_id = aws_vpc.levelupvpc.id
   route {
@@ -21,6 +32,10 @@ resource "aws_route_table" "levelup-private" {
   }
 }
 
+
+#######################################################
+#                 4. Create aws_route_table_association
+#######################################################
 # route associations private
 resource "aws_route_table_association" "level-private-1-a" {
   subnet_id      = aws_subnet.levelupvpc-private-1.id
