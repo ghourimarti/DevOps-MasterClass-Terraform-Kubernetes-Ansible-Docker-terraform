@@ -58,11 +58,11 @@ resource "aws_route_table_association" "level-private-1-c" {
 #######################################################
 output "____________________aws_nat_gateway___________________" {
   value = {
-    aws_eip           = aws_eip.levelup-nat
-    aws_nat_gateway = aws_nat_gateway.levelup-nat-gw
-    aws_route_table = aws_route_table.levelup-private
-    aws_route_table_association_1a = aws_route_table_association.level-private-1-a
-    aws_route_table_association_1b = aws_route_table_association.level-private-1-b
-    aws_route_table_association_1c = aws_route_table_association.level-private-1-c
+    aws_eip____________________________ = aws_eip.levelup-nat
+    aws_nat_gateway____________________________ = aws_nat_gateway.levelup-nat-gw
+    aws_route_table____________________________ = aws_route_table.levelup-private
+    aws_route_table_association_1a____________________________ = aws_route_table_association.level-private-1-a
+    aws_route_table_association_1b____________________________ = aws_route_table_association.level-private-1-b
+    aws_route_table_association_1c____________________________ = aws_route_table_association.level-private-1-c
   }
 }
