@@ -23,6 +23,9 @@ resource "aws_instance" "MyFirstInstnace" {
   vpc_security_group_ids = [aws_security_group.allow-levelup-ssh.id]
   subnet_id = aws_subnet.levelupvpc-public-1.id
 
+  # User Data
+  user_data = file("installapache.sh")
+
   tags = {
     Name = "custom_instance"
   }
@@ -57,5 +60,9 @@ resource "aws_volume_attachment" "ebs-volume-1-attachment" {
 }
 
 
-
-
+#################################################
+#                 4. Output
+#################################################
+output "public_ip" {
+  value = aws_instance.MyFirstInstnace.public_ip 
+}
