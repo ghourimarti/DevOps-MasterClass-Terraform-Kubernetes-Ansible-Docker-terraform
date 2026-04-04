@@ -33,7 +33,7 @@ resource "aws_instance" "MyFirstInstnace" {
 #################################################
 #                 3. Create EBS resource
 #################################################
-#EBS resource Creation
+# Create EBS resource Creation
 resource "aws_ebs_volume" "ebs-volume-1" {
   availability_zone = "us-east-1a"
   size              = 50
@@ -49,7 +49,7 @@ resource "aws_ebs_volume" "ebs-volume-1" {
 #                 4. Attach EBS volume
 #################################################
 
-#Attach EBS volume with AWS Instance
+# Attach EBS volume with AWS Instance
 resource "aws_volume_attachment" "ebs-volume-1-attachment" {
   device_name = "/dev/xvdh"
   volume_id   = aws_ebs_volume.ebs-volume-1.id

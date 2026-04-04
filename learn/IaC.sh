@@ -62,3 +62,33 @@ ssh -i levelup_key ubuntu@ec2-54-175-74-216.compute-1.amazonaws.com
 # https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami.html?finding-an-ami-aws-cli
 
 # find the 
+
+############################################################
+#      S59 Terraform Concepts - Building Blocks
+############################################################
+
+ssh-keygen -f levelup_key
+
+ssh -i levelup_key ubuntu@ec2-54-175-74-216.compute-1.amazonaws.com
+
+sudo -s
+df -h
+mkfs.ext4 <device_name>   # device_name = /dev/xvdh
+mkfs.ext4 /dev/xvdh
+# 
+mkdir -p /data
+
+#
+mount <device_name> /data  # device_name = /dev/xvdh
+mount /dev/xvdh /data
+##########
+sudo -s
+df -h
+mkfs.ext4 /dev/xvdh
+mkdir -p /data
+mount /dev/xvdh /data
+
+# but mount will remove when instance reboot 
+# for that permanent mount
+vim /etc/fstab
+/dev/xvdh /data ext4 defaults 0 0 
