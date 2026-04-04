@@ -24,7 +24,9 @@ resource "aws_instance" "MyFirstInstnace" {
   subnet_id = aws_subnet.levelupvpc-public-1.id
 
   # User Data
-  user_data = file("installapache.sh")
+  # user_data = file("installapache.sh")
+  user_data = data.template_cloudinit_config.install-apache-config.rendered
+
 
   tags = {
     Name = "custom_instance"
