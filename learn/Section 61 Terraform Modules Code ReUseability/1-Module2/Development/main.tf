@@ -1,4 +1,4 @@
-module "dev-vpc"{
+module "dev-vpc" {
     source                          = "../../1-Module2" #  "../../custom_vpc"
     vpcname                         = "dev01-vpc"
     cidr                            = "10.0.2.0/24"
