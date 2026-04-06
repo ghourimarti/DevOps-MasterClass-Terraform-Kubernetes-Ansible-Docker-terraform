@@ -3,7 +3,7 @@
 #  1. Create AWS VPC
 #################################################
 
-resource "aws_vpc" "aws_vpc_levelup" {
+resource "aws_vpc" "levelupvpc" { #resource "aws_vpc" "aws_vpc_levelup" {
 
   cidr_block                       = var.cidr
   instance_tenancy                 = var.instance_tenancy
