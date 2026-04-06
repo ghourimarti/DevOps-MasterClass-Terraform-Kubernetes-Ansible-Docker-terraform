@@ -1,3 +1,6 @@
+#################################################
+#  1. Create AWS VPC
+#################################################
 resource "aws_vpc" "this" {
   cidr_block                       = var.cidr_block
   enable_dns_support               = var.enable_dns_support
@@ -10,7 +13,10 @@ resource "aws_vpc" "this" {
   }
 }
 
-# Public Subnets
+#################################################
+#  2. Create Public Subnets: vpc ---> public subnet
+#################################################
+# Public Subnets in Custom VPC
 resource "aws_subnet" "public" {
   count = length(var.public_subnet_cidrs)
 
@@ -25,7 +31,10 @@ resource "aws_subnet" "public" {
   }
 }
 
-# Private Subnets
+#################################################
+# 3. Create Private Subnets: vpc ---> private subnet
+#################################################
+# Custom internet GatewayPrivate Subnets in Custom VPC
 resource "aws_subnet" "private" {
   count = length(var.private_subnet_cidrs)
 
@@ -40,7 +49,10 @@ resource "aws_subnet" "private" {
   }
 }
 
-# Internet Gateway
+#################################################
+#  4. Create Internet Gateway
+#################################################
+# Custom internet Gateway
 resource "aws_internet_gateway" "this" {
   vpc_id = aws_vpc.this.id
 
@@ -49,7 +61,11 @@ resource "aws_internet_gateway" "this" {
   }
 }
 
-# Public Route Table
+# 5,6 = levelupvpc-public-1,2,3(subnet) ---> levelup-public(route table) ---> levelup-gw(internet gateway)
+#################################################
+#  5. Create Route Table: levelup-public ---> levelup-gw
+#################################################
+# Creating Table for the Custom VPC
 resource "aws_route_table" "public" {
   vpc_id = aws_vpc.this.id
 
@@ -63,6 +79,10 @@ resource "aws_route_table" "public" {
   }
 }
 
+###################################################
+# 6. Create Route Table Association: levelupvpc-public-1,2,3 ---> levelup-public
+###################################################
+# 
 resource "aws_route_table_association" "public" {
   count = length(aws_subnet.public)
 
@@ -70,7 +90,10 @@ resource "aws_route_table_association" "public" {
   route_table_id = aws_route_table.public.id
 }
 
-# Elastic IP for NAT
+#################################################
+# 1. Create aws_eip for NAT
+#################################################
+#Define External IP 
 resource "aws_eip" "nat" {
   count  = var.create_nat_gateway ? 1 : 0
   domain = "vpc"
@@ -81,7 +104,9 @@ resource "aws_eip" "nat" {
 }
 
 
-# NAT Gateway
+#################################################
+# 2. Create aws_nat_gateway:  levelup-nat-gw ---> levelupvpc-public-1
+#################################################
 resource "aws_nat_gateway" "this" {
   count = var.create_nat_gateway ? 1 : 0
 
@@ -95,7 +120,10 @@ resource "aws_nat_gateway" "this" {
   }
 }
 
-# Private Route Table
+# 3,4 = levelupvpc-private-1,2,3 ---> levelup-private ---> levelup-nat-gw
+#################################################
+# 3. Create aws_route_table: levelup-private ---> levelup-nat-gw
+#################################################
 resource "aws_route_table" "private" {
   count  = var.create_nat_gateway ? 1 : 0
   vpc_id = aws_vpc.this.id
@@ -110,6 +138,12 @@ resource "aws_route_table" "private" {
   }
 }
 
+
+#######################################################
+# 4. Create aws_route_table_association: levelupvpc-private-1,2,3 ---> levelup-private
+#######################################################
+# route associations private
+
 resource "aws_route_table_association" "private" {
   count = var.create_nat_gateway ? length(aws_subnet.private) : 0
 
@@ -117,6 +151,9 @@ resource "aws_route_table_association" "private" {
   route_table_id = aws_route_table.private[0].id
 }
 
+#######################################################
+# 4. Create Security Group
+#######################################################
 # Security Group
 resource "aws_security_group" "ssh" {
   name        = "${var.vpc_name}-ssh"
