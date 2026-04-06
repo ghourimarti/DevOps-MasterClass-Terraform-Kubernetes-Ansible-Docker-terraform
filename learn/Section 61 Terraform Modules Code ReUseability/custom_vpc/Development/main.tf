@@ -7,5 +7,5 @@ module "dev-vpc" {
     # enable_classiclink              = "false"
     # enable_classiclink_dns_support  = "false"
     enable_ipv6                     = "true"
-    vpcenvironment                  = "Development-Engineering"
+    vpcenvironment                   = "Development-Engineering"
 }
