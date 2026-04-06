@@ -1,5 +1,5 @@
 module "dev-vpc" {
-    source                          = "1-Module2" #  "../../custom_vpc"
+    source                          = "../../custom_vpc"
     aws_secret_key                  = var.aws_secret_key
     vpcname                         = "dev01-vpc"
     cidr                            = "10.0.0.0/16"
