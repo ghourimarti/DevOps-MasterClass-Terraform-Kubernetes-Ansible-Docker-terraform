@@ -25,7 +25,7 @@ locals {
   # chop(string)
   # Removes the last character from a string
   # -------------------------------------------------
-  chop_example = chop("hello!")
+  # chop_example = chop("hello!")
 
   # -------------------------------------------------
   # chunklist(list, size)
