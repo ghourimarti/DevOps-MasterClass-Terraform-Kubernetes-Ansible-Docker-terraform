@@ -125,7 +125,7 @@ resource "aws_nat_gateway" "this" {
 # 3. Create aws_route_table: levelup-private ---> levelup-nat-gw
 #################################################
 resource "aws_route_table" "private" {
-  count  = var.create_nat_gateway ? 1 : 0
+  count  =  var.create_nat_gateway ? 1 : 0
   vpc_id = aws_vpc.this.id
 
   route {
