@@ -214,9 +214,9 @@ output "chomp_example" {
   value = local.chomp_example
 }
 
-output "chop_example" {
-  value = local.chop_example
-}
+# output "chop_example" {
+#   value = local.chop_example
+# }
 
 output "chunklist_example" {
   value = local.chunklist_example
