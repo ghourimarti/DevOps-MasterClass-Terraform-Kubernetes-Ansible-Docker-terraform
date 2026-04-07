@@ -1,12 +1,12 @@
-#Provider
-provider "aws" {
-	region = var.region
-}
+# #Provider
+# provider "aws" {
+# 	region = var.region
+# }
 
-#Module
-module "myvpc" {
-    source = "./module/network"
-}
+# #Module
+# module "myvpc" {
+#     source = "./module/network"
+# }
 
 #Resource key pair
 resource "aws_key_pair" "levelup_key" {
@@ -16,7 +16,7 @@ resource "aws_key_pair" "levelup_key" {
 
 #EC2 Instance
 resource "aws_instance" "levelup_instance" {
-  ami                       = var.instance_ami
+  ami                       = lookup(var.instance_ami, var.aws_region) 
   instance_type             = var.instance_type
   subnet_id                 = module.myvpc.public_subnet_id
   vpc_security_group_ids    = module.myvpc.sg_22_id

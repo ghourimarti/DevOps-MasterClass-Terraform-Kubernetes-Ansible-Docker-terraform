@@ -30,3 +30,13 @@ module "dev_vpc" {
 
   allowed_ssh_cidrs = ["0.0.0.0/0"]
 }
+
+
+module "dev_ec2" {
+  source = "../../modules/ec2"
+
+  public_key_path = "~/.ssh/levelup_key.pub"
+  instance_ami = lookup(var.instance_ami, var.aws_region)
+  instance_type = "t2.micro"
+  environment_tag = "Development"
+}
