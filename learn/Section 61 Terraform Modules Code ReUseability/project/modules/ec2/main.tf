@@ -1,19 +1,15 @@
-# #Provider
-# provider "aws" {
-# 	region = var.region
-# }
-
-#Module
-# module "myvpc" {
-#     source = "./../module/network"
-# }
-
+#################################################
+# 1. Resource key pair
+#################################################
 #Resource key pair
 resource "aws_key_pair" "levelup_key" {
   key_name   = "levelup_key"
   public_key = file(var.public_key_path)
 }
 
+#################################################
+# 2. EC2 Instance
+#################################################
 #EC2 Instance
 resource "aws_instance" "this" {
   ami                    = lookup(var.instance_ami, var.aws_region)
