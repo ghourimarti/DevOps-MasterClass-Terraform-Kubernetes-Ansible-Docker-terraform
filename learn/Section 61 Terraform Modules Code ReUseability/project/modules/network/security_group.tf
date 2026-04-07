@@ -1,5 +1,5 @@
 #######################################################
-# 4. Create Security Group
+# Create Security Group
 #######################################################
 # Security Group
 resource "aws_security_group" "ssh" {

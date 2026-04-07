@@ -1,5 +1,5 @@
 module "dev_vpc" {
-  source = "../../modules/vpc"
+  source = "../../modules/network"
 
   vpc_name              = "dev01-vpc"
   environment           = "Development-Engineering"
