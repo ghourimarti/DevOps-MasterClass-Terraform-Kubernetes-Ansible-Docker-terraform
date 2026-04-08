@@ -33,7 +33,7 @@ resource "aws_db_instance" "levelup-mariadb" {
   allocated_storage       = 20             # 20 GB of storage
   engine                  = "mariadb"
   engine_version          = "11.8.6"  #"10.4.8"
-  instance_class          = "db.t2.micro"  # use micro if you want to use the free tier
+  instance_class          = "db.t3.micro"  # use micro if you want to use the free tier
   identifier              = "mariadb"
   # name                    = "mariadb"
   username                = "root"           # username
