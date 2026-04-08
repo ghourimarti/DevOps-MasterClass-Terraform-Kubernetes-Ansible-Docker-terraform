@@ -15,7 +15,7 @@ resource "aws_db_subnet_group" "mariadb-subnets" {
 
 resource "aws_db_parameter_group" "levelup-mariadb-parameters" {
   name        = "levelup-mariadb-parameters"
-  family      = "mariadb11.8" #"mariadb10.4"
+  family      = "mariadb10.4"  # "mariadb11.8" 
   description = "MariaDB parameter group"
 
   parameter {
