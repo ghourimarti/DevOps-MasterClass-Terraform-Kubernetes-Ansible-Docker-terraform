@@ -61,3 +61,18 @@ resource "aws_iam_policy_attachment" "s3-users-attach" {
 #################################################
 #  3. Group Policies
 #################################################
+
+resource "aws_iam_group_policy_attachment" "vpc" {
+  group      = aws_iam_group.admingroup.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonVPCFullAccess"
+}
+
+resource "aws_iam_group_policy_attachment" "ec2" {
+  group      = aws_iam_group.admingroup.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonEC2FullAccess"
+}
+
+resource "aws_iam_group_policy_attachment" "s3" {
+  group      = aws_iam_group.admingroup.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonS3FullAccess"
+}
