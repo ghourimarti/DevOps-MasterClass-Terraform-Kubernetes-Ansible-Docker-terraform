@@ -1,4 +1,8 @@
-#Roles to access the AWS S3 Bucket
+#################################################
+#  1. Roles to access
+#################################################
+# Roles to access the AWS S3 Bucket
+
 resource "aws_iam_role" "s3-levelupbucket-role" {
   name               = "s3-levelupbucket-role"
   assume_role_policy = <<EOF
@@ -19,7 +23,10 @@ EOF
 
 }
 
-#Policy to attach the S3 Bucket Role
+#################################################
+#  2. Policy to attach the S3 Bucket Role
+#################################################
+# Policy to attach the S3 Bucket Role
 resource "aws_iam_role_policy" "s3-levelupmybucket-role-policy" {
   name = "s3-levelupmybucket-role-policy"
   role = aws_iam_role.s3-levelupbucket-role.id

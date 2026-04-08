@@ -1,4 +1,7 @@
-#TF File for IAM Users and Groups
+#################################################
+#  1. IAM Users
+#################################################
+# TF File for IAM Users and Groups
 
 resource "aws_iam_user" "adminuser1" {
   name = "adminuser1"
@@ -8,6 +11,9 @@ resource "aws_iam_user" "adminuser2" {
   name = "adminuser2"
 }
 
+#################################################
+#  2. IAM Groups
+#################################################
 # Group TF Definition
 resource "aws_iam_group" "admingroup" {
   name = "admingroup"
@@ -23,7 +29,10 @@ resource "aws_iam_group_membership" "admin-users" {
   group = aws_iam_group.admingroup.name
 }
 
-#Policy for AWS Group
+#################################################
+#  3. Policies
+#################################################
+# Policy for AWS Group
 resource "aws_iam_policy_attachment" "admin-users-attach" {
   name       = "admin-users-attach"
   groups     = [aws_iam_group.admingroup.name]
