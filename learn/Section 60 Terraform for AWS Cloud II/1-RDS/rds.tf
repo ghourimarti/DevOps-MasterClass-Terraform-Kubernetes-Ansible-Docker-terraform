@@ -15,7 +15,7 @@ resource "aws_db_subnet_group" "mariadb-subnets" {
 
 resource "aws_db_parameter_group" "levelup-mariadb-parameters" {
   name        = "levelup-mariadb-parameters"
-  family      = "mariadb10.4"  # "mariadb11.8" 
+  family      = "mariadb11.8" # "mariadb10.4"  #  
   description = "MariaDB parameter group"
 
   parameter {
@@ -32,7 +32,7 @@ resource "aws_db_parameter_group" "levelup-mariadb-parameters" {
 resource "aws_db_instance" "levelup-mariadb" {
   allocated_storage       = 20             # 20 GB of storage
   engine                  = "mariadb"
-  engine_version          = "10.4.8"
+  engine_version          = "11.8.6"  #"10.4.8"
   instance_class          = "db.t2.micro"  # use micro if you want to use the free tier
   identifier              = "mariadb"
   # name                    = "mariadb"
