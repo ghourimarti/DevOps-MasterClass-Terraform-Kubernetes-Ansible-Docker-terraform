@@ -1,18 +1,11 @@
-#################################################
-#  1. RDS Resources
-#################################################
-
+#RDS Resources
 resource "aws_db_subnet_group" "mariadb-subnets" {
   name        = "mariadb-subnets"
   description = "Amazon RDS subnet group"
   subnet_ids  = [aws_subnet.levelupvpc-private-1.id, aws_subnet.levelupvpc-private-2.id]
 }
 
-
-#################################################
-#  2. RDS Parameters
-#################################################
-
+#RDS Parameters
 resource "aws_db_parameter_group" "levelup-mariadb-parameters" {
   name        = "levelup-mariadb-parameters"
   family      = "mariadb10.4"
@@ -24,11 +17,7 @@ resource "aws_db_parameter_group" "levelup-mariadb-parameters" {
   }
 }
 
-
-#################################################
-#  3. RDS Instance properties
-#################################################
-
+#RDS Instance properties
 resource "aws_db_instance" "levelup-mariadb" {
   allocated_storage       = 20             # 20 GB of storage
   engine                  = "mariadb"
