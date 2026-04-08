@@ -92,3 +92,14 @@ mount /dev/xvdh /data
 # for that permanent mount
 vim /etc/fstab
 /dev/xvdh /data ext4 defaults 0 0 
+
+
+
+############################################################
+#      S60 RDS
+############################################################
+
+
+sudo apt-get install mysql-client
+mysql -u root -h "mariadb.cs922k48e3e5.us-east-1.rds.amazonaws.com -p'mariadb141'
+
