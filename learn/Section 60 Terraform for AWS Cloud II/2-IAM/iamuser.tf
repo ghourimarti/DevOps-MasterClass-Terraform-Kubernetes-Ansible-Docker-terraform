@@ -51,11 +51,11 @@ resource "aws_iam_policy_attachment" "ec2-users-attach" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEC2FullAccess"
 }
 
-resource "aws_iam_policy_attachment" "s3-users-attach" {
-  name       = "s3-users-attach"
-  groups     = [aws_iam_group.admingroup.name]
-  policy_arn = "arn:aws:iam::aws:policy/AmazonS3FullAccess"
-}
+# resource "aws_iam_policy_attachment" "s3-users-attach" {
+#   name       = "s3-users-attach"
+#   groups     = [aws_iam_group.admingroup.name]
+#   policy_arn = "arn:aws:iam::aws:policy/AmazonS3FullAccess"
+# }
 
 
 #################################################
@@ -67,10 +67,10 @@ resource "aws_iam_group_policy_attachment" "vpc" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonVPCFullAccess"
 }
 
-resource "aws_iam_group_policy_attachment" "ec2" {
-  group      = aws_iam_group.admingroup.name
-  policy_arn = "arn:aws:iam::aws:policy/AmazonEC2FullAccess"
-}
+# resource "aws_iam_group_policy_attachment" "ec2" {
+#   group      = aws_iam_group.admingroup.name
+#   policy_arn = "arn:aws:iam::aws:policy/AmazonEC2FullAccess"
+# }
 
 resource "aws_iam_group_policy_attachment" "s3" {
   group      = aws_iam_group.admingroup.name
