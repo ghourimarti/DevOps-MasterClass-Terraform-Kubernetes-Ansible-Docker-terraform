@@ -14,12 +14,12 @@ resource "aws_iam_user" "adminuser2" {
 #################################################
 #  2. IAM Groups
 #################################################
-# Group TF Definition
+# 1. Group TF Definition
 resource "aws_iam_group" "admingroup" {
   name = "zohee" #"admingroup"
 }
 
-#Assign User to AWS Group
+# 2. Assign User to AWS Group
 resource "aws_iam_group_membership" "admin-users" {
   name = "admin-users"
   users = [
@@ -30,11 +30,34 @@ resource "aws_iam_group_membership" "admin-users" {
 }
 
 #################################################
-#  3. Policies
+#  3. Individual Policies
 #################################################
 # Policy for AWS Group
-resource "aws_iam_policy_attachment" "admin-users-attach" {
-  name       = "admin-users-attach"
+# resource "aws_iam_policy_attachment" "admin-users-attach" {
+#   name       = "admin-users-attach"
+#   groups     = [aws_iam_group.admingroup.name]
+#   policy_arn = "arn:aws:iam::aws:policy/AdministratorAccess"
+# }
+
+resource "aws_iam_policy_attachment" "vpc" {
+  name       = "vpc-users-attach"
   groups     = [aws_iam_group.admingroup.name]
-  policy_arn = "arn:aws:iam::aws:policy/AdministratorAccess"
+  policy_arn = "arn:aws:iam::aws:policy/AmazonVPCFullAccess"
 }
+
+resource "aws_iam_policy_attachment" "ec2-users-attach" {
+  name       = "ec2-users-attach"
+  groups     = [aws_iam_group.admingroup.name]
+  policy_arn = "arn:aws:iam::aws:policy/AmazonEC2FullAccess"
+}
+
+resource "aws_iam_policy_attachment" "s3-users-attach" {
+  name       = "s3-users-attach"
+  groups     = [aws_iam_group.admingroup.name]
+  policy_arn = "arn:aws:iam::aws:policy/AmazonS3FullAccess"
+}
+
+
+#################################################
+#  3. Group Policies
+#################################################
