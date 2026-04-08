@@ -5,7 +5,7 @@
 
 resource "aws_s3_bucket" "levelup-s3bucket" {
   bucket = "levelup-bucket-141"
-  acl    = "private"
+   aws_s3_bucket_acl    = "private"  # acl
 
   tags = {
     Name = "levelup-bucket-141"
