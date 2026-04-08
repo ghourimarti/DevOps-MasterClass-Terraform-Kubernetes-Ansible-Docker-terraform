@@ -4,11 +4,11 @@
 # TF File for IAM Users and Groups
 
 resource "aws_iam_user" "adminuser1" {
-  name = "adminuser1"
+  name = "kinza" # "adminuser1"
 }
 
 resource "aws_iam_user" "adminuser2" {
-  name = "adminuser2"
+  name = "hania" # "adminuser2"
 }
 
 #################################################
@@ -16,7 +16,7 @@ resource "aws_iam_user" "adminuser2" {
 #################################################
 # Group TF Definition
 resource "aws_iam_group" "admingroup" {
-  name = "admingroup"
+  name = "zohee" #"admingroup"
 }
 
 #Assign User to AWS Group
