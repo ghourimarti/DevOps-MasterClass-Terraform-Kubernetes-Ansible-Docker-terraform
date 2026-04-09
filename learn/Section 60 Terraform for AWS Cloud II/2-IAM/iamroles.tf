@@ -46,8 +46,7 @@ resource "aws_iam_role_policy" "s3-levelupmybucket-role-policy" {
         
           "arn:aws:s3:::zohee-levelup-bucket141",
           "arn:aws:s3:::zohee-levelup-bucket141/*"
-          # "arn:aws:s3:::levelup-bucket-141",
-          # "arn:aws:s3:::levelup-bucket-141/*"
+
         ]
       }
     ]
@@ -64,3 +63,7 @@ resource "aws_iam_instance_profile" "s3-levelupbucket-role-instanceprofile" {
   name = "s3-levelupbucket-role"
   role = aws_iam_role.s3-levelupbucket-role.name
 }
+
+
+          # "arn:aws:s3:::levelup-bucket-141",
+          # "arn:aws:s3:::levelup-bucket-141/*"
