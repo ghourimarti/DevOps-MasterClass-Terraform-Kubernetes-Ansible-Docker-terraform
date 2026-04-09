@@ -50,7 +50,10 @@ EOF
 
 }
 
-#Instance identifier
+#################################################
+#  3. aws_iam_instance_profile
+#################################################
+# Instance identifier
 resource "aws_iam_instance_profile" "s3-levelupbucket-role-instanceprofile" {
   name = "s3-levelupbucket-role"
   role = aws_iam_role.s3-levelupbucket-role.name
