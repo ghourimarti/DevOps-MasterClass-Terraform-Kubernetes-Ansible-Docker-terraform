@@ -8,7 +8,7 @@ resource "aws_key_pair" "levelup_key" {
 resource "aws_instance" "MyFirstInstnace" {
   ami           = lookup(var.AMIS, var.aws_region)
   instance_type = "t2.micro"
-  availability_zone = "us-east-2a"
+  availability_zone = "us-east-1a"
   key_name      = aws_key_pair.levelup_key.key_name
   
   iam_instance_profile = aws_iam_instance_profile.s3-levelupbucket-role-instanceprofile.name

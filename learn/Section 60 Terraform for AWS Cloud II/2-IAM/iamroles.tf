@@ -31,22 +31,25 @@ resource "aws_iam_role_policy" "s3-levelupmybucket-role-policy" {
   name = "s3-levelupmybucket-role-policy"
   role = aws_iam_role.s3-levelupbucket-role.id
   policy = <<EOF
-{
+  {
     "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Effect": "Allow",
-            "Action": [
-              "s3:*"
-            ],
-            "Resource": [
-              "arn:aws:s3:::levelup-bucket-141",
-              "arn:aws:s3:::levelup-bucket-141/*"
-            ]
-        }
+    "Statement": 
+    [
+      {
+        "Effect": "Allow",
+        "Action": 
+        [
+          "s3:*"
+        ],
+        "Resource": 
+        [
+          "arn:aws:s3:::levelup-bucket-141",
+          "arn:aws:s3:::levelup-bucket-141/*"
+        ]
+      }
     ]
-}
-EOF
+  }
+  EOF
 
 }
 
