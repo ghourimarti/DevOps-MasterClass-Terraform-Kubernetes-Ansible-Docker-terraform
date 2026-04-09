@@ -43,8 +43,11 @@ resource "aws_iam_role_policy" "s3-levelupmybucket-role-policy" {
         ],
         "Resource": 
         [
-          "arn:aws:s3:::levelup-bucket-141",
-          "arn:aws:s3:::levelup-bucket-141/*"
+        
+          "arn:aws:s3:::zohee-levelup-bucket141",
+          "arn:aws:s3:::zohee-levelup-bucket141/*"
+          # "arn:aws:s3:::levelup-bucket-141",
+          # "arn:aws:s3:::levelup-bucket-141/*"
         ]
       }
     ]
