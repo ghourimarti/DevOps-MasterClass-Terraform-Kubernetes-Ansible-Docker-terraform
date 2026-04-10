@@ -103,3 +103,11 @@ vim /etc/fstab
 sudo apt-get install mysql-client
 mysql -u root -h "mariadb.cs922k48e3e5.us-east-1.rds.amazonaws.com -p'mariadb141'
 
+
+
+apt-get install python3-pip python3-dev
+
+echo "tehsafDdkfdjfffffffffffffffffffffffffffffffdfkdfd fgsg" >> terra.txt
+apt install -y awscli
+
+aws s3 terra.txt s3://zohee-levelup-bucket141

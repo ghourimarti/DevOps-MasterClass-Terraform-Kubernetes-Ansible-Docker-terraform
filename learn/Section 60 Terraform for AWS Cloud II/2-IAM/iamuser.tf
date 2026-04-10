@@ -29,15 +29,65 @@ resource "aws_iam_group_membership" "admin-users" {
   group = aws_iam_group.admingroup.name
 }
 
-#################################################
-#  3. Individual Policies
-#################################################
+##########################################################
+#  3. Individual Policies (aws_iam_user_policy_attachment)
+##########################################################
 # Policy for AWS Group
-# resource "aws_iam_policy_attachment" "admin-users-attach" {
-#   name       = "admin-users-attach"
-#   groups     = [aws_iam_group.admingroup.name]
-#   policy_arn = "arn:aws:iam::aws:policy/AdministratorAccess"
+
+resource "aws_iam_user_policy_attachment" "kinza_vpc" {
+  user       = aws_iam_user.adminuser1.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonVPCFullAccess"
+}
+
+resource "aws_iam_user_policy_attachment" "hania_vpc" {
+  user       = aws_iam_user.adminuser2.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonVPCFullAccess"
+}
+
+
+#################################################
+#  3. Group Policies (aws_iam_group_policy_attachment)
+#################################################
+
+# resource "aws_iam_group_policy_attachment" "vpc" {
+#   group      = aws_iam_group.admingroup.name
+#   policy_arn = "arn:aws:iam::aws:policy/AmazonVPCFullAccess"
 # }
+
+resource "aws_iam_group_policy_attachment" "ec2" {
+  group      = aws_iam_group.admingroup.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonEC2FullAccess"
+}
+
+# resource "aws_iam_group_policy_attachment" "s3" {
+#   group      = aws_iam_group.admingroup.name
+#   policy_arn = "arn:aws:iam::aws:policy/AmazonS3FullAccess"
+# }
+
+
+
+
+
+
+
+
+
+
+
+
+
+resource "aws_iam_user_policy_attachment" "kinza_ec2" {
+  user       = aws_iam_user.adminuser1.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonEC2FullAccess"
+}
+
+resource "aws_iam_user_policy_attachment" "hania_s3" {
+  user       = aws_iam_user.adminuser2.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonS3FullAccess"
+}
+
+
+
 
 resource "aws_iam_policy_attachment" "vpc" {
   name       = "vpc-users-attach"
@@ -58,21 +108,3 @@ resource "aws_iam_policy_attachment" "ec2-users-attach" {
 # }
 
 
-#################################################
-#  3. Group Policies
-#################################################
-
-resource "aws_iam_group_policy_attachment" "vpc" {
-  group      = aws_iam_group.admingroup.name
-  policy_arn = "arn:aws:iam::aws:policy/AmazonVPCFullAccess"
-}
-
-# resource "aws_iam_group_policy_attachment" "ec2" {
-#   group      = aws_iam_group.admingroup.name
-#   policy_arn = "arn:aws:iam::aws:policy/AmazonEC2FullAccess"
-# }
-
-resource "aws_iam_group_policy_attachment" "s3" {
-  group      = aws_iam_group.admingroup.name
-  policy_arn = "arn:aws:iam::aws:policy/AmazonS3FullAccess"
-}
