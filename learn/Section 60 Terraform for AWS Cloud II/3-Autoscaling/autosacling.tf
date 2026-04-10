@@ -47,6 +47,6 @@ resource "aws_autoscaling_group" "levelup-autoscaling" {
   }
 }
 
-output "ELB" {
-  value = aws_elb.levelup-elb.dns_name
-}
+# output "ELB" {
+#   value = aws_elb.levelup-elb.dns_name
+# }
