@@ -1,4 +1,7 @@
-#AWS ELB Configuration
+#################################################
+#  1. AWS ELB Configuration
+#################################################
+# AWS ELB Configuration
 resource "aws_elb" "levelup-elb" {
   name            = "levelup-elb"
   subnets         = [aws_subnet.levelupvpc-public-1.id, aws_subnet.levelupvpc-public-2.id]
@@ -28,7 +31,10 @@ resource "aws_elb" "levelup-elb" {
   }
 }
 
-#Security group for AWS ELB
+#################################################
+# 2. Security group for AWS ELB
+#################################################
+# Security group for AWS ELB
 resource "aws_security_group" "levelup-elb-securitygroup" {
   vpc_id      = aws_vpc.levelupvpc.id
   name        = "levelup-elb-sg"
@@ -53,7 +59,10 @@ resource "aws_security_group" "levelup-elb-securitygroup" {
   }
 }
 
-#Security group for the Instances
+#################################################
+# 3. Security group for the Instances
+#################################################
+# Security group for the Instances
 resource "aws_security_group" "levelup-instance" {
   vpc_id      = aws_vpc.levelupvpc.id
   name        = "levelup-instance"
