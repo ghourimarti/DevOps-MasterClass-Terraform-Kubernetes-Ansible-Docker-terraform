@@ -45,24 +45,24 @@ resource "aws_iam_user_policy_attachment" "hania_vpc" {
 }
 
 
-# #################################################
-# #  3. Group Policies (aws_iam_group_policy_attachment)
-# #################################################
+#################################################
+#  3. Group Policies (aws_iam_group_policy_attachment)
+#################################################
 
-# # resource "aws_iam_group_policy_attachment" "vpc" {
-# #   group      = aws_iam_group.admingroup.name
-# #   policy_arn = "arn:aws:iam::aws:policy/AmazonVPCFullAccess"
-# # }
-
-# resource "aws_iam_group_policy_attachment" "group_ec2" {
+# resource "aws_iam_group_policy_attachment" "vpc" {
 #   group      = aws_iam_group.admingroup.name
-#   policy_arn = "arn:aws:iam::aws:policy/AmazonEC2FullAccess"
+#   policy_arn = "arn:aws:iam::aws:policy/AmazonVPCFullAccess"
 # }
 
-# # resource "aws_iam_group_policy_attachment" "s3" {
-# #   group      = aws_iam_group.admingroup.name
-# #   policy_arn = "arn:aws:iam::aws:policy/AmazonS3FullAccess"
-# # }
+resource "aws_iam_group_policy_attachment" "group_ec2" {
+  group      = aws_iam_group.admingroup.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonEC2FullAccess"
+}
+
+# resource "aws_iam_group_policy_attachment" "s3" {
+#   group      = aws_iam_group.admingroup.name
+#   policy_arn = "arn:aws:iam::aws:policy/AmazonS3FullAccess"
+# }
 
 
 # #################################################
