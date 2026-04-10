@@ -1,18 +1,30 @@
-#AutoScaling Launch Configuration
-resource "aws_launch_configuration" "levelup-launchconfig" {
-  name_prefix     = "levelup-launchconfig"
-  image_id        = lookup(var.AMIS, var.AWS_REGION)
-  instance_type   = "t2.micro"
-  key_name        = aws_key_pair.levelup_key.key_name
-}
-
-#Generate Key
+#################################################
+#  0. Generate Key
+#################################################
+# Generate Key
 resource "aws_key_pair" "levelup_key" {
     key_name = "levelup_key"
     public_key = file(var.PATH_TO_PUBLIC_KEY)
 }
 
-#Autoscaling Group
+#################################################
+#  1. AutoScaling Launch Configuration
+#################################################
+# AutoScaling Launch Configuration
+
+resource "aws_launch_configuration" "levelup-launchconfig" {
+  name_prefix     = "levelup-launchconfig"
+  image_id        = lookup(var.AMIS, var.aws_region)
+  instance_type   = "t2.micro"
+  key_name        = aws_key_pair.levelup_key.key_name
+}
+
+
+#################################################
+#  2. Autoscaling Group
+#################################################
+# Autoscaling Group
+
 resource "aws_autoscaling_group" "levelup-autoscaling" {
   name                      = "levelup-autoscaling"
   vpc_zone_identifier       = ["subnet-9e0ad9f5", "subnet-d7a6afad"]
@@ -30,7 +42,10 @@ resource "aws_autoscaling_group" "levelup-autoscaling" {
   }
 }
 
-#Autoscaling Configuration policy - Scaling Alarm
+#################################################
+#  3. Autoscaling Configuration policy - Scaling Alarm
+#################################################
+# Autoscaling Configuration policy - Scaling Alarm
 resource "aws_autoscaling_policy" "levelup-cpu-policy" {
   name                   = "levelup-cpu-policy"
   autoscaling_group_name = aws_autoscaling_group.levelup-autoscaling.name
@@ -40,7 +55,10 @@ resource "aws_autoscaling_policy" "levelup-cpu-policy" {
   policy_type            = "SimpleScaling"
 }
 
-#Auto scaling Cloud Watch Monitoring
+#################################################
+#  4. Auto scaling Cloud Watch Monitoring
+#################################################
+# Auto scaling Cloud Watch Monitoring
 resource "aws_cloudwatch_metric_alarm" "levelup-cpu-alarm" {
   alarm_name          = "levelup-cpu-alarm"
   alarm_description   = "Alarm once CPU Uses Increase"
@@ -60,7 +78,10 @@ resource "aws_cloudwatch_metric_alarm" "levelup-cpu-alarm" {
   alarm_actions   = [aws_autoscaling_policy.levelup-cpu-policy.arn]
 }
 
-#Auto Descaling Policy
+#################################################
+#  5. Auto Descaling Policy
+#################################################
+# Auto Descaling Policy
 resource "aws_autoscaling_policy" "levelup-cpu-policy-scaledown" {
   name                   = "levelup-cpu-policy-scaledown"
   autoscaling_group_name = aws_autoscaling_group.levelup-autoscaling.name
@@ -70,7 +91,10 @@ resource "aws_autoscaling_policy" "levelup-cpu-policy-scaledown" {
   policy_type            = "SimpleScaling"
 }
 
-#Auto descaling cloud watch 
+#################################################
+#  6. Auto descaling cloud watch 
+#################################################
+# Auto descaling cloud watch 
 resource "aws_cloudwatch_metric_alarm" "levelup-cpu-alarm-scaledown" {
   alarm_name          = "levelup-cpu-alarm-scaledown"
   alarm_description   = "Alarm once CPU Uses Decrease"
