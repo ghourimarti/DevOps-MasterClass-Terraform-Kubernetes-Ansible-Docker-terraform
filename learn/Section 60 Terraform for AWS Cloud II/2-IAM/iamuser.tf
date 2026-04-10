@@ -69,11 +69,11 @@ resource "aws_iam_group_policy_attachment" "group_ec2" {
 # #  3. Group Policies (aws_iam_policy_attachment)
 # #################################################
 
-# resource "aws_iam_policy_attachment" "s3-attach" {
-#   name       = "s3-users-attach"
-#   groups     = [aws_iam_group.admingroup.name]
-#   policy_arn = "arn:aws:iam::aws:policy/AmazonS3FullAccess"
-# }
+resource "aws_iam_policy_attachment" "s3-attach" {
+  name       = "s3-users-attach"
+  groups     = [aws_iam_group.admingroup.name]
+  policy_arn = "arn:aws:iam::aws:policy/AmazonS3FullAccess"
+}
 
 
 
