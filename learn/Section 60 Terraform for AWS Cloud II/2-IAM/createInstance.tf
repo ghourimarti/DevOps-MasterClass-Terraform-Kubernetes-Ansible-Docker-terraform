@@ -13,6 +13,8 @@ resource "aws_instance" "MyFirstInstnace" {
   
   iam_instance_profile = aws_iam_instance_profile.s3-levelupbucket-role-instanceprofile.name
 
+  vpc_security_group_ids = [aws_security_group.allow-levelup-ssh.id]
+  subnet_id = aws_subnet.levelupvpc-public-1.id
   tags = {
     Name = "custom_instance"
   }
