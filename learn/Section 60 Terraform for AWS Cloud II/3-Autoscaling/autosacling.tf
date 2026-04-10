@@ -1,4 +1,14 @@
-#AutoScaling Launch Configuration
+
+#Generate Key
+resource "aws_key_pair" "levelup_key" {
+    key_name = "levelup_key"
+    public_key = file(var.PATH_TO_PUBLIC_KEY)
+}
+
+#################################################
+#  1. AutoScaling Launch Configuration
+#################################################
+# AutoScaling Launch Configuration
 resource "aws_launch_configuration" "levelup-launchconfig" {
   name_prefix     = "levelup-launchconfig"
   image_id        = lookup(var.AMIS, var.AWS_REGION)
@@ -12,13 +22,12 @@ resource "aws_launch_configuration" "levelup-launchconfig" {
   }
 }
 
-#Generate Key
-resource "aws_key_pair" "levelup_key" {
-    key_name = "levelup_key"
-    public_key = file(var.PATH_TO_PUBLIC_KEY)
-}
 
-#Autoscaling Group
+
+#################################################
+#  2. Autoscaling Group
+#################################################
+# Autoscaling Group
 resource "aws_autoscaling_group" "levelup-autoscaling" {
   name                      = "levelup-autoscaling"
   vpc_zone_identifier       = [aws_subnet.levelupvpc-public-1.id, aws_subnet.levelupvpc-public-2.id]

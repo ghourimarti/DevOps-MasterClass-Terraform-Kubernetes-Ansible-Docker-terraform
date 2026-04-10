@@ -110,4 +110,4 @@ apt-get install python3-pip python3-dev
 echo "tehsafDdkfdjfffffffffffffffffffffffffffffffdfkdfd fgsg" >> terra.txt
 apt install -y awscli
 
-aws s3 terra.txt s3://zohee-levelup-bucket141
+aws s3 cp terra.txt s3://zohee-levelup-bucket141
