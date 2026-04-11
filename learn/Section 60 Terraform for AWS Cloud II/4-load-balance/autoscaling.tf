@@ -8,7 +8,7 @@ resource "aws_key_pair" "levelup_key" {
 }
 
 #################################################
-#  1. Configuration: AutoScaling Launch Configuration
+#  1. Configuration: 
 #################################################
 # AutoScaling Launch Configuration
 
@@ -21,7 +21,7 @@ resource "aws_launch_configuration" "levelup-launchconfig" {
 
 
 #################################################
-#  2. Group: Autoscaling Group
+#  2. Autoscaling Group:
 #################################################
 # Autoscaling Group
 
@@ -43,7 +43,7 @@ resource "aws_autoscaling_group" "levelup-autoscaling" {
 }
 
 #################################################
-#  3. Autoscaling Configuration policy : Autoscaling Configuration policy - Scaling Alarm
+#  3. Autoscaling Configuration policy
 #################################################
 # Autoscaling Configuration policy - Scaling Alarm
 resource "aws_autoscaling_policy" "levelup-cpu-policy" {
@@ -56,7 +56,7 @@ resource "aws_autoscaling_policy" "levelup-cpu-policy" {
 }
 
 #################################################
-#  4. Autoscaling Monitoring: Auto scaling Cloud Watch Monitoring
+#  4. Auto scaling Monitoring: 
 #################################################
 # Auto scaling Cloud Watch Monitoring
 resource "aws_cloudwatch_metric_alarm" "levelup-cpu-alarm" {
@@ -79,7 +79,7 @@ resource "aws_cloudwatch_metric_alarm" "levelup-cpu-alarm" {
 }
 
 #################################################
-#  5. Descaling Policy: Auto Descaling Policy
+#  5. Auto Descaling Configuration Policy
 #################################################
 # Auto Descaling Policy
 resource "aws_autoscaling_policy" "levelup-cpu-policy-scaledown" {
@@ -92,7 +92,7 @@ resource "aws_autoscaling_policy" "levelup-cpu-policy-scaledown" {
 }
 
 #################################################
-#  6. Descaling Monitoring: Auto descaling cloud watch 
+#  6.  Auto Descaling Monitoring:
 #################################################
 # Auto descaling cloud watch 
 resource "aws_cloudwatch_metric_alarm" "levelup-cpu-alarm-scaledown" {
