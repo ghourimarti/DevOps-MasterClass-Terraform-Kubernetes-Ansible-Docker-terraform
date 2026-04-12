@@ -77,7 +77,7 @@ resource "aws_autoscaling_group" "levelup-autoscaling" {
   load_balancers            = [aws_elb.levelup-elb.name]
 
 
-  force_delete              = trueyes
+  force_delete              = true
 
   tag {
     key                 = "Name"
