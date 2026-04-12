@@ -39,7 +39,6 @@ resource "aws_launch_template" "levelup-launchtemplate" {
   key_name      = aws_key_pair.levelup_key.key_name
   
   vpc_security_group_ids = [aws_security_group.levelup-instance.id]
-
   tag_specifications {
     resource_type = "instance"
 
@@ -72,9 +71,9 @@ resource "aws_autoscaling_group" "levelup-autoscaling" {
   health_check_grace_period = 200
 
   ##
-  # health_check_type         = "EC2"
-  health_check_type         = "ELB"
-  load_balancers            = [aws_elb.levelup-elb.name]
+  health_check_type         = "EC2"
+  # health_check_type         = "ELB"
+  # load_balancers            = [aws_elb.levelup-elb.name]
 
 
   force_delete              = true
