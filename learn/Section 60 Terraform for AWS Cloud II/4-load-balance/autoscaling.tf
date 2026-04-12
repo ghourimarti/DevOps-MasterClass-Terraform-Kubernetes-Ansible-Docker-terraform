@@ -129,3 +129,29 @@ resource "aws_cloudwatch_metric_alarm" "levelup-cpu-alarm-scaledown" {
   actions_enabled = true
   alarm_actions   = [aws_autoscaling_policy.levelup-cpu-policy-scaledown.arn]
 }
+
+
+# 🔄 Full Execution Flow (Step-by-Step)
+# Step 1: Metrics
+# Each EC2 sends:
+# CPUUtilization → CloudWatch
+
+# Step 2: Aggregation
+# Every 120 sec:
+# Compute average CPU across ASG
+
+# Step 3: Condition Check
+# Is CPU ≤ 10%?
+
+# Step 4: Stability Check
+# Has this been true for 2 periods?
+# (= 4 minutes)
+
+# Step 5: Alarm Fires
+# State = ALARM
+
+# Step 6: Action Triggered
+# Execute scaling policy
+
+# Step 7: ASG Executes
+# Remove 1 EC2 instance
