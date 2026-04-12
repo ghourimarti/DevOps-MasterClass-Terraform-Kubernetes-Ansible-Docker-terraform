@@ -30,6 +30,24 @@ resource "aws_launch_configuration" "levelup-launchconfig" {
 }
 
 
+
+resource "aws_launch_template" "levelup-launchconfig" {
+  name_prefix   = "levelup-launchtemplate"
+
+  image_id      = lookup(var.AMIS, var.aws_region)
+  instance_type = "t2.micro"
+  key_name      = aws_key_pair.levelup_key.key_name
+
+  tag_specifications {
+    resource_type = "instance"
+
+    tags = {
+      Name = "LevelUp EC2"
+    }
+  }
+}
+
+
 #################################################
 #  2. Autoscaling Group:
 #################################################
@@ -57,6 +75,12 @@ resource "aws_autoscaling_group" "levelup-autoscaling" {
     propagate_at_launch = true
   }
 }
+
+
+
+
+
+
 
 #################################################
 #  3. Autoscaling Configuration policy
