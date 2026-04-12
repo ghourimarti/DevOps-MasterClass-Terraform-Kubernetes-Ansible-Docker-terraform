@@ -37,6 +37,8 @@ resource "aws_launch_template" "levelup-launchtemplate" {
   image_id      = lookup(var.AMIS, var.aws_region)
   instance_type = "t2.micro"
   key_name      = aws_key_pair.levelup_key.key_name
+  
+  vpc_security_group_ids = [aws_security_group.levelup-instance.id]
 
   tag_specifications {
     resource_type = "instance"
@@ -75,7 +77,7 @@ resource "aws_autoscaling_group" "levelup-autoscaling" {
   load_balancers            = [aws_elb.levelup-elb.name]
 
 
-  force_delete              = true
+  force_delete              = trueyes
 
   tag {
     key                 = "Name"
