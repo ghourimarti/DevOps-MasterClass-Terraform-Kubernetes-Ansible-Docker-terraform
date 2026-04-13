@@ -123,3 +123,7 @@ stress --cpu 2 --timeout 900
 ############################################################
 #      S63 Packer 
 ############################################################
+packer Validate
+packer Build
+Save Atifacts
+Use Artifacts further in terraform
