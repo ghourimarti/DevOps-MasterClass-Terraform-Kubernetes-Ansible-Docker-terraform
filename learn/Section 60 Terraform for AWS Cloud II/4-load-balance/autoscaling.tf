@@ -10,6 +10,8 @@ resource "aws_key_pair" "levelup_key" {
 #################################################
 #  1. Configuration: 
 #################################################
+
+
 # AutoScaling Launch Configuration
 # HOW to create EC2
 # resource "aws_launch_configuration" "levelup-launchconfig" {
@@ -37,6 +39,9 @@ resource "aws_launch_template" "levelup-launchtemplate" {
   image_id      = lookup(var.AMIS, var.aws_region)
   instance_type = "t2.micro"
   key_name      = aws_key_pair.levelup_key.key_name
+  monitoring {
+    enabled = true
+  }
   
   vpc_security_group_ids = [aws_security_group.levelup-instance.id]
   tag_specifications {
@@ -60,7 +65,6 @@ resource "aws_autoscaling_group" "levelup-autoscaling" {
     aws_subnet.levelupvpc-public-1.id,
     aws_subnet.levelupvpc-public-2.id
     ]
-  # vpc_zone_identifier       = ["subnet-9e0ad9f5", "subnet-d7a6afad"]
   # launch_configuration      = aws_launch_configuration.levelup-launchconfig.name
   launch_template {
     id      = aws_launch_template.levelup-launchtemplate.id
@@ -86,11 +90,6 @@ resource "aws_autoscaling_group" "levelup-autoscaling" {
 }
 
 
-
-
-
-
-
 #################################################
 #  3. Autoscaling Configuration policy
 #################################################
@@ -100,7 +99,7 @@ resource "aws_autoscaling_policy" "levelup-cpu-policy" {
   autoscaling_group_name = aws_autoscaling_group.levelup-autoscaling.name
   adjustment_type        = "ChangeInCapacity"
   scaling_adjustment     = "1"
-  cooldown               = "200"
+  cooldown               = "20"
   policy_type            = "SimpleScaling"
 }
 
@@ -112,10 +111,10 @@ resource "aws_cloudwatch_metric_alarm" "levelup-cpu-alarm" {
   alarm_name          = "levelup-cpu-alarm"
   alarm_description   = "Alarm once CPU Uses Increase"
   comparison_operator = "GreaterThanOrEqualToThreshold"
-  evaluation_periods  = "2"
+  evaluation_periods  = "1"
   metric_name         = "CPUUtilization"
   namespace           = "AWS/EC2"
-  period              = "120"
+  period              = "60"
   statistic           = "Average"
   threshold           = "30"
 
@@ -136,7 +135,7 @@ resource "aws_autoscaling_policy" "levelup-cpu-policy-scaledown" {
   autoscaling_group_name = aws_autoscaling_group.levelup-autoscaling.name
   adjustment_type        = "ChangeInCapacity"
   scaling_adjustment     = "-1"
-  cooldown               = "200"
+  cooldown               = "20"
   policy_type            = "SimpleScaling"
 }
 
@@ -148,10 +147,10 @@ resource "aws_cloudwatch_metric_alarm" "levelup-cpu-alarm-scaledown" {
   alarm_name          = "levelup-cpu-alarm-scaledown"
   alarm_description   = "Alarm once CPU Uses Decrease"
   comparison_operator = "LessThanOrEqualToThreshold"
-  evaluation_periods  = "2"
+  evaluation_periods  = "1"
   metric_name         = "CPUUtilization"
   namespace           = "AWS/EC2"
-  period              = "120"
+  period              = "60"
   statistic           = "Average"
   threshold           = "10"
 
