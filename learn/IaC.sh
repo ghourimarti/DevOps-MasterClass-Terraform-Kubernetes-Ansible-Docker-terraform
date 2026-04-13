@@ -130,3 +130,8 @@ Use Artifacts further in terraform
 
 
 https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami.html
+
+packer validate scenario1.json 
+packer build scenario1.json 
+
+
