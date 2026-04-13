@@ -58,11 +58,10 @@ resource "aws_launch_template" "levelup-launchtemplate" {
 # HOW MANY EC2 to run
 resource "aws_autoscaling_group" "levelup-autoscaling" {
   name                      = "levelup-autoscaling"
-  # vpc_zone_identifier = [
-  #   aws_subnet.levelupvpc-public-1.id,
-  #   aws_subnet.levelupvpc-public-2.id
-  #   ]
-  vpc_zone_identifier       = ["us-east-1a", "us-east-1b"]
+  vpc_zone_identifier = [
+    aws_subnet.levelupvpc-public-1.id,
+    aws_subnet.levelupvpc-public-2.id
+    ]
   # launch_configuration      = aws_launch_configuration.levelup-launchconfig.name
   launch_template {
     id      = aws_launch_template.levelup-launchtemplate.id
