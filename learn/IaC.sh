@@ -53,7 +53,8 @@ ZA152024in
 
 ssh-keygen -f levelup_key
 
-ssh -i levelup_key ubuntu@ec2-54-175-74-216.compute-1.amazonaws.com
+ssh -i levelup_key ubuntu@
+ec2-54-175-74-216.compute-1.amazonaws.com
 
 # got to EC2 --> Network and security --> Security Groups
 # --> Edit inbound Rules --> 
