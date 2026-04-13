@@ -127,3 +127,6 @@ packer Validate
 packer Build
 Save Atifacts
 Use Artifacts further in terraform
+
+
+https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami.html
