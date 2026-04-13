@@ -112,9 +112,6 @@ apt install -y awscli
 
 aws s3 cp terra.txt s3://zohee-levelup-bucket141
 
+sudo -s
 
-
- apt-get update
- sudo -s
- apt-get install stress
- stress --cpu 2 --timeout 300
+apt-get update  ;  apt-get install stress  ; stress --cpu 2 --timeout 300
