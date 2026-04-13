@@ -83,3 +83,12 @@ resource "aws_autoscaling_group" "levelup-autoscaling" {
     propagate_at_launch = true
   }
 }
+
+
+
+#################################################
+#  3. Output:
+#################################################
+output "ELB" {
+  value = aws_elb.levelup-elb.dns_name
+}
