@@ -19,7 +19,10 @@
             },
             "instance_type": "t2.micro",
             "ssh_username": "ubuntu",
-            "ami_name": "scenario1-packer-{{timestamp}}"
+            "ami_name": "scenario1-packer-{{timestamp}}",
+            "vpc_id": "vpc-0fcde9e7a25f43020",
+
+    "associate_public_ip_address": true
         }
     ]
 }
