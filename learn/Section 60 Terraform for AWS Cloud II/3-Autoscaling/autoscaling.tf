@@ -39,6 +39,9 @@ resource "aws_launch_template" "levelup-launchtemplate" {
   image_id      = lookup(var.AMIS, var.aws_region)
   instance_type = "t2.micro"
   key_name      = aws_key_pair.levelup_key.key_name
+  monitoring {
+    enabled = true
+  }
   
   vpc_security_group_ids = [aws_security_group.levelup-instance.id]
   tag_specifications {
