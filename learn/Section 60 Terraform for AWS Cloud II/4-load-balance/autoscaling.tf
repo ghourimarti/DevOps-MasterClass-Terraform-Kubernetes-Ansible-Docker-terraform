@@ -43,7 +43,17 @@ resource "aws_launch_template" "levelup-launchtemplate" {
   }
   
   vpc_security_group_ids = [aws_security_group.levelup-instance.id]
-  user_data       = "#!/bin/bash\napt-get update\napt-get -y install net-tools nginx\nMYIP=`ifconfig | grep -E '(inet 10)|(addr:10)' | awk '{ print $2 }' | cut -d ':' -f2`\necho 'Hello Team\nThis is my IP: '$MYIP > /var/www/html/index.html"
+  user_data = base64encode(<<-EOF
+  #!/bin/bash
+  apt-get update
+  apt-get -y install net-tools nginx
+
+  MYIP=$(hostname -I | awk '{print $1}')
+
+  echo "Hello Team
+  This is my IP: $MYIP" > /var/www/html/index.html
+  EOF
+  )
   tag_specifications {
     resource_type = "instance"
 
