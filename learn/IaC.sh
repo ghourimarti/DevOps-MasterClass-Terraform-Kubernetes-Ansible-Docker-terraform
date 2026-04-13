@@ -102,7 +102,7 @@ vim /etc/fstab
 
 
 sudo apt-get install mysql-client
-mysql -u root -h "mariadb.cs922k48e3e5.us-east-1.rds.amazonaws.com -p'mariadb141'
+mysql -u root -h "mariadb.cs922k48e3e5.us-east-1.rds.amazonaws.com -p'mariadb141'"
 
 
 
@@ -117,3 +117,9 @@ sudo -s
 
 apt-get update  ;  apt-get install stress  ; sudo apt install stress-ng -y 
 stress --cpu 2 --timeout 900
+
+
+
+############################################################
+#      S63 Packer 
+############################################################
