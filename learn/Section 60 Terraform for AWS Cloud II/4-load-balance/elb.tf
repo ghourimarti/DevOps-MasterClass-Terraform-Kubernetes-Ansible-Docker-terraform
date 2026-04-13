@@ -19,7 +19,7 @@ resource "aws_elb" "levelup-elb" {
     unhealthy_threshold = 2
     timeout             = 3
     target              = "HTTP:80/"
-    interval            = 30
+    interval            = 10 # 30
   }
 
   cross_zone_load_balancing   = true
@@ -75,6 +75,7 @@ resource "aws_security_group" "levelup-instance" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+  # ingress for ssh connection on instance
   ingress {
     from_port   = 22
     to_port     = 22
@@ -82,10 +83,13 @@ resource "aws_security_group" "levelup-instance" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+  # ingress for connection from elb
   ingress {
     from_port       = 80
     to_port         = 80
     protocol        = "tcp"
+    # instead of cidr block use elb security group elb --> instance
+    # so only elb can connect to instance 
     security_groups = [aws_security_group.levelup-elb-securitygroup.id]
   }
 
