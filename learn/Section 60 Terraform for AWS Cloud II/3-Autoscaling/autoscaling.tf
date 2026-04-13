@@ -114,7 +114,7 @@ resource "aws_cloudwatch_metric_alarm" "levelup-cpu-alarm" {
   evaluation_periods  = "1"
   metric_name         = "CPUUtilization"
   namespace           = "AWS/EC2"
-  period              = "20"
+  period              = "60"
   statistic           = "Average"
   threshold           = "30"
 
@@ -150,7 +150,7 @@ resource "aws_cloudwatch_metric_alarm" "levelup-cpu-alarm-scaledown" {
   evaluation_periods  = "1"
   metric_name         = "CPUUtilization"
   namespace           = "AWS/EC2"
-  period              = "20"
+  period              = "60"
   statistic           = "Average"
   threshold           = "10"
 
