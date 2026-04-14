@@ -10,20 +10,6 @@ module "develop-vpc" {
     AWS_REGION  = var.AWS_REGION
 }
 
-# provider "aws" {
-#   region = var.AWS_REGION
-# }
-
-#################################################
-#  1. Create AWS VPC
-#################################################
-#Resource key pair
-# resource "aws_key_pair" "levelup_key" {
-#   key_name      = "levelup_key"
-#   public_key    = file(var.levelup_key) # file(var.public_key_path)
-# }
-
-
 resource "aws_key_pair" "levelup_key" {
     key_name = "levelup_key"
     public_key = file(var.PATH_TO_PUBLIC_KEY)
@@ -31,7 +17,7 @@ resource "aws_key_pair" "levelup_key" {
 
 
 #################################################
-#  1. Create AWS VPC
+#  2. Create AWS VPC
 #################################################
 #Secutiry Group for Instances
 resource "aws_security_group" "allow-ssh" {
@@ -60,7 +46,7 @@ resource "aws_security_group" "allow-ssh" {
 }
 
 #################################################
-#  1. Create AWS VPC
+#  3. Create AWS Instance
 #################################################
 # Create Instance Group
 resource "aws_instance" "my-instance" {
