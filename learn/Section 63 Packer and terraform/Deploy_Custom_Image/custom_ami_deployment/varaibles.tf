@@ -11,7 +11,7 @@ variable "ENVIRONMENT" {
 
 variable "AMI_ID" {
     type    = string
-    default = ""
+    default = "ami-0dcd3cef9e34c58dc"
 }
 
 variable "AWS_REGION" {
