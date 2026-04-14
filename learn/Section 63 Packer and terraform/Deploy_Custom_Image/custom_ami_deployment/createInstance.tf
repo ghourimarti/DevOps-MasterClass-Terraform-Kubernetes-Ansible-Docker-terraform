@@ -54,11 +54,12 @@ resource "aws_instance" "my-instance" {
   instance_type = var.INSTANCE_TYPE
 
   # the VPC subnet
-  subnet_id = element(module.develop-vpc.public_subnets, 0)
+  subnet_id = module.develop-vpc.public_subnets # element(module.develop-vpc.public_subnets, 0)
   availability_zone = "${var.AWS_REGION}a"
 
   # the security group
   vpc_security_group_ids = ["${aws_security_group.allow-ssh.id}"]
+
 
   # the public SSH key
   key_name = aws_key_pair.levelup_key.key_name
