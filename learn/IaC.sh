@@ -148,3 +148,8 @@ packer build install_custom_ami.json
 # UN comment out intance creation for vpc, subnet
 terraform plan
 terraform apply
+
+# now ssh the created instance
+apt list --installed
+apt list --installed | nginx
+apt list --installed | docker
