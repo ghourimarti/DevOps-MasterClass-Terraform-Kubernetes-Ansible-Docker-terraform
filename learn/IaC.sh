@@ -140,5 +140,11 @@ packer build scenario2.json
 
 ################
 terraform plan
+terraform apply # comment out intance creation for vpc, subnet
+# get vpc id, subnet id from aws cloud
 packer validate install_custom_ami.json
 packer build install_custom_ami.json
+# get the ami id and paste into the terrform variabels.tf file
+# UN comment out intance creation for vpc, subnet
+terraform plan
+terraform apply

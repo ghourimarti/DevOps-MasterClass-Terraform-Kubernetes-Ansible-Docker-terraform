@@ -49,22 +49,22 @@ resource "aws_security_group" "allow-ssh" {
 #  3. Create AWS Instance
 #################################################
 # Create Instance Group
-# resource "aws_instance" "my-instance" {
-#   ami           = var.AMI_ID
-#   instance_type = var.INSTANCE_TYPE
+resource "aws_instance" "my-instance" {
+  ami           = var.AMI_ID
+  instance_type = var.INSTANCE_TYPE
 
-#   # the VPC subnet
-#   subnet_id = element(module.develop-vpc.public_subnets, 0)
-#   availability_zone = "${var.AWS_REGION}a"
+  # the VPC subnet
+  subnet_id = element(module.develop-vpc.public_subnets, 0)
+  availability_zone = "${var.AWS_REGION}a"
 
-#   # the security group
-#   vpc_security_group_ids = ["${aws_security_group.allow-ssh.id}"]
+  # the security group
+  vpc_security_group_ids = ["${aws_security_group.allow-ssh.id}"]
 
-#   # the public SSH key
-#   key_name = aws_key_pair.levelup_key.key_name
+  # the public SSH key
+  key_name = aws_key_pair.levelup_key.key_name
 
-#   tags = {
-#     Name         = "instance-${var.ENVIRONMENT}"
-#     Environmnent = var.ENVIRONMENT
-#   }
-# }
+  tags = {
+    Name         = "instance-${var.ENVIRONMENT}"
+    Environmnent = var.ENVIRONMENT
+  }
+}
