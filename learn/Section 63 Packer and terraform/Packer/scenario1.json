@@ -17,8 +17,8 @@
             "instance_type": "t2.micro",
             "ssh_username": "ubuntu",
             "ami_name": "scenario1-packer-{{timestamp}}",
-            "vpc_id": "vpc-00e630d105de892bd",
-            "subnet_id": "subnet-0d6e39ecad6d8ce46",
+            "vpc_id": "vpc-0e81abf757cee3ba4",
+            "subnet_id": "subnet-099437221bc663c76",
             "associate_public_ip_address": true
         },
         {
@@ -38,8 +38,8 @@
             "instance_type": "t2.micro",
             "ssh_username": "ubuntu",
             "ami_name": "scenario1-packer-{{timestamp}}",
-            "vpc_id": "vpc-00e630d105de892bd",
-            "subnet_id": "subnet-0d6e39ecad6d8ce46",
+            "vpc_id": "vpc-0e81abf757cee3ba4",
+            "subnet_id": "subnet-099437221bc663c76",
             "associate_public_ip_address": true
         }
     ]
