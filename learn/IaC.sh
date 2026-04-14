@@ -137,3 +137,8 @@ packer validate scenario2.json
 packer build scenario2.json 
 
 
+
+################
+terraform plan
+packer validate install_custom_ami.json.json 
+packer build install_custom_ami.json.json 
