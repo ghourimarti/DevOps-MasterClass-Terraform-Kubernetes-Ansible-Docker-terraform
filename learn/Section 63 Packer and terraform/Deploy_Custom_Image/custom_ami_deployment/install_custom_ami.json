@@ -28,6 +28,22 @@
     ],
     "provisioners": [
         {
+            "type": "file",
+            "source": "./helloworld.txt",
+            "destination": "/home/ubuntu/"
+        },
+        {
+            "type": "shell",
+            "inline": [
+                "ls -al /home/ubuntu",
+                "cat /home/ubuntu/helloworld.txt"
+            ]
+        },
+        {
+            "type": "shell",
+            "script": "./install_nginx.sh"
+        },
+        {
             "type": "shell",
             "script": "./install_nginx.sh",
             "execute_command": "{{ .Vars }} sudo -E sh '{{ .Path }}'",
