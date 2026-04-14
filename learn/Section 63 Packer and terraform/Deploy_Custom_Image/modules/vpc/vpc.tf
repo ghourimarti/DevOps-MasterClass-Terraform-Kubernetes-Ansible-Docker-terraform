@@ -1,4 +1,7 @@
-#Custom VPC for my Project 
+#################################################
+#  1. Create AWS VPC
+#################################################
+# Custom VPC for my Project 
 module "levelup-vpc" {
   source = "terraform-aws-modules/vpc/aws"
 
@@ -18,7 +21,10 @@ module "levelup-vpc" {
   }
 }
 
-#Output Specific to Custom VPC
+#################################################
+#  1. Output Specific to Custom VPC
+#################################################
+# Output Specific to Custom VPC
 output "my_vpc_id" {
   description = "VPC ID"
   value       = module.levelup-vpc.vpc_id

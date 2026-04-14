@@ -1,3 +1,6 @@
+#################################################
+#  1. Create AWS VPC
+#################################################
 # Create Instance uisng Custom VPC
 
 module "develop-vpc" {
@@ -11,12 +14,18 @@ provider "aws" {
   region = var.AWS_REGION
 }
 
+#################################################
+#  1. Create AWS VPC
+#################################################
 #Resource key pair
 resource "aws_key_pair" "levelup_key" {
   key_name      = "levelup_key"
   public_key    = file(var.public_key_path)
 }
 
+#################################################
+#  1. Create AWS VPC
+#################################################
 #Secutiry Group for Instances
 resource "aws_security_group" "allow-ssh" {
   vpc_id      = module.develop-vpc.my_vpc_id
@@ -43,6 +52,9 @@ resource "aws_security_group" "allow-ssh" {
   }
 }
 
+#################################################
+#  1. Create AWS VPC
+#################################################
 # Create Instance Group
 resource "aws_instance" "my-instance" {
   ami           = var.AMI_ID
