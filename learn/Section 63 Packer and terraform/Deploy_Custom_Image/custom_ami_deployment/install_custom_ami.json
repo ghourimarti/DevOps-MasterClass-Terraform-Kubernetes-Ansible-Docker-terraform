@@ -21,8 +21,8 @@
             "instance_type": "t2.micro",
             "ssh_username": "ubuntu",
             "ami_name": "custom-packer-{{timestamp}}",
-            "vpc_id": "vpc-05bbdf9f6c3968922",
-            "subnet_id": "subnet-0930ecb3864ee8d3e",
+            "vpc_id": "vpc-042913be1cbe53c6d",
+            "subnet_id": "subnet-0b58211e3d57b7b86",
             "associate_public_ip_address": true
         }
     ],
