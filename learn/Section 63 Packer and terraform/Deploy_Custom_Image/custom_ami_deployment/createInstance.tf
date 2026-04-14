@@ -10,9 +10,9 @@ module "develop-vpc" {
     AWS_REGION  = var.AWS_REGION
 }
 
-provider "aws" {
-  region = var.AWS_REGION
-}
+# provider "aws" {
+#   region = var.AWS_REGION
+# }
 
 #################################################
 #  1. Create AWS VPC
