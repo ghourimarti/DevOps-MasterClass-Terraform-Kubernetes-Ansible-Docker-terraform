@@ -133,7 +133,7 @@ https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami.html
 https://us-east-1.console.aws.amazon.com/ec2/home?region=us-east-1#AMICatalog:
 
 
-packer validate scenario1.json 
-packer build scenario1.json 
+packer validate scenario2.json 
+packer build scenario2.json 
 
 
