@@ -22,7 +22,7 @@
             "associate_public_ip_address": true
         },
         {
-            "type": "amazon-ebs2",
+            "type": "amazon-ebs",
             "region": "us-east-1",
             "source_ami_filter": {
                 "filters": {
@@ -37,7 +37,7 @@
             },
             "instance_type": "t2.micro",
             "ssh_username": "ubuntu",
-            "ami_name": "scenario1-packer-{{timestamp}}",
+            "ami_name": "scenario1-packer2-{{timestamp}}",
             "vpc_id": "vpc-0e81abf757cee3ba4",
             "subnet_id": "subnet-099437221bc663c76",
             "associate_public_ip_address": true

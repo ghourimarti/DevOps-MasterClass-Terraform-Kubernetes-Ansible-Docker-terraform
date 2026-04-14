@@ -18,11 +18,15 @@
                 ],
                 "most_recent": true
             },
+
+            
             "instance_type": "t2.micro",
-            "ssh_username": "ubuntu",
-            "ami_name": "scenario1-packer-{{timestamp}}",
             "vpc_id": "vpc-00e630d105de892bd",
             "subnet_id": "subnet-0d6e39ecad6d8ce46",
+
+            "ssh_username": "ubuntu",
+            
+            "ami_name": "scenario1-packer-{{timestamp}}",
             "associate_public_ip_address": true
         }
     ],
