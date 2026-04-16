@@ -32,7 +32,7 @@ variable "LEVELUP_RDS_ENGINE" {
 variable "LEVELUP_RDS_ENGINE_VERSION" {
     type = string
     # default = "8.0.20"
-    default = "8.4.8"
+    default = "8.4"
 }
 
 variable "DB_INSTANCE_CLASS" {
