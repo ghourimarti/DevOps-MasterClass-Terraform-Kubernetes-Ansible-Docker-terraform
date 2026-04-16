@@ -28,3 +28,34 @@ output "load_balancer_output" {
   description = "Load Balancer"
   value       = module.levelup-webserver.load_balancer_output
 }
+
+
+#                              Internet
+#                                  |
+#                        DNS of Application Load Balancer
+#                                  |
+#                    Application Load Balancer (public)
+#                  /                                   \
+#      ALB Node in Public Subnet 1         ALB Node in Public Subnet 2
+#                  |                                   |
+#                  +---------- Listener --------------+
+#                                  |
+#                            Target Group
+#                                  |
+#                -------------------------------------
+#                |                                   |
+#       EC2 Instance in Public Subnet 1    EC2 Instance in Public Subnet 2
+#           created by ASG                    created by ASG
+#                \                                   /
+#                 \                                 /
+#                   Auto Scaling Group manages both
+#                                  |
+#                       Web Server Security Group
+#                                  |
+#                       Connects internally to RDS
+#                                  |
+#              ------------------------------------------------
+#              |                                              |
+#    Private Subnet 1                              Private Subnet 2
+#              \                                              /
+#                     RDS DB Subnet Group + Database
