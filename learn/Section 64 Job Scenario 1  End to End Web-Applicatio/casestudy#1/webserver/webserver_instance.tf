@@ -102,6 +102,16 @@ resource "aws_launch_template" "levelup-launchtemplate" {
 
   vpc_security_group_ids = [aws_security_group.levelup_webservers.id]
 
+  user_data = base64encode(<<-EOF
+  #!/bin/bash
+  apt-get update
+  apt-get -y install net-tools nginx
+  MYIP=`ifconfig | grep -E '(inet 10)|(addr:10)' | awk '{ print $2 }' | cut -d ':' -f2`
+  echo 'Hello Team
+  This is my IP: '$MYIP > /var/www/html/index.html
+  EOF
+  )
+  
   block_device_mappings {
     device_name = "/dev/sdf"
 
@@ -131,7 +141,7 @@ resource "aws_autoscaling_group" "levelup_webserver" {
   health_check_type         = "EC2"
   desired_capacity          = 1
   force_delete              = true
-  launch_configuration      = aws_launch_configuration.launch_config_webserver.name
+  # launch_configuration      = aws_launch_configuration.launch_config_webserver.name
   launch_template {
     id      = aws_launch_template.levelup-launchtemplate.id
     version = "$Latest"
@@ -144,7 +154,7 @@ resource "aws_autoscaling_group" "levelup_webserver" {
 #################################################
 #                 4. aws_lb
 #################################################
-#Application load balancer for app server
+# Application load balancer for app server
 resource "aws_lb" "levelup-load-balancer" {
   name               = "${var.ENVIRONMENT}-levelup-lb"
   internal           = false
@@ -182,6 +192,10 @@ resource "aws_lb_listener" "webserver_listner" {
   }
 }
 
+
+#################################################
+#                 7. output
+#################################################
 output "load_balancer_output" {
   value = aws_lb.levelup-load-balancer.dns_name
 }
