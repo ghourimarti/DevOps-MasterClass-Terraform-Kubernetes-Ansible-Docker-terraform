@@ -135,8 +135,8 @@ resource "aws_launch_template" "levelup-launchtemplate" {
 #################################################
 resource "aws_autoscaling_group" "levelup_webserver" {
   name                      = "levelup_WebServers"
-  max_size                  = 2
-  min_size                  = 1
+  max_size                  = 5
+  min_size                  = 3
   health_check_grace_period = 30
   health_check_type         = "EC2"
   desired_capacity          = 1
