@@ -5,7 +5,10 @@
 resource "aws_db_subnet_group" "mariadb-subnets" {
   name        = "mariadb-subnets"
   description = "Amazon RDS subnet group"
-  subnet_ids  = [aws_subnet.levelupvpc-private-1.id, aws_subnet.levelupvpc-private-2.id]
+  subnet_ids  = [
+    aws_subnet.levelupvpc-private-1.id, 
+    aws_subnet.levelupvpc-private-2.id
+    ]
 }
 
 
@@ -51,6 +54,10 @@ resource "aws_db_instance" "levelup-mariadb" {
     Name = "levelup-mariadb"
   }
 }
+
+#################################################
+#  3. output
+#################################################
 
 output "rds" {
   value = aws_db_instance.levelup-mariadb.endpoint
