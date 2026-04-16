@@ -20,9 +20,9 @@ module "levelup-webserver" {
 }
 
 #Define Provider
-provider "aws" {
-  region = var.AWS_REGION
-}
+# provider "aws" {
+#   region = var.AWS_REGION
+# }
 
 output "load_balancer_output" {
   description = "Load Balancer"
