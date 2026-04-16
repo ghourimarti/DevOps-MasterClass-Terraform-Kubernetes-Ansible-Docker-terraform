@@ -37,7 +37,7 @@ variable "LEVELUP_RDS_ENGINE_VERSION" {
 
 variable "DB_INSTANCE_CLASS" {
     type = string
-    default = "db.t2.micro"
+    default = "db.t3.micro"
 }
 
 variable "RDS_CIDR" {
