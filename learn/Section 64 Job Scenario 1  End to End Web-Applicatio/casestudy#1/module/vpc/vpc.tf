@@ -170,9 +170,9 @@ resource "aws_route_table_association" "to_private_subnet2" {
 #                 1. Create Provider
 #################################################
 
-provider "aws" {
-  region     = var.AWS_REGION
-}
+# provider "aws" {
+#   region     = var.AWS_REGION
+# }
 
 
 # #################################################
