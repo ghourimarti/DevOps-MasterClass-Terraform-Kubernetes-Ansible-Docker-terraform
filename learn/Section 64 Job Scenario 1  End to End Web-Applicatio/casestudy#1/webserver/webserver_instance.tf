@@ -75,7 +75,7 @@ resource "aws_security_group" "levelup_webservers"{
 
 
 #################################################
-#                 0. aws_launch_configuration
+#                 2. aws_launch_configuration
 #################################################
 resource "aws_launch_configuration" "launch_config_webserver" {
   name   = "launch_config_webserver"
@@ -91,9 +91,37 @@ resource "aws_launch_configuration" "launch_config_webserver" {
   }
 }
 
+#################################################
+
+resource "aws_launch_template" "levelup-launchtemplate" {
+  name_prefix   = "levelup-launchtemplate"
+
+  image_id      = lookup(var.AMIS, var.AWS_REGION)
+  instance_type = var.INSTANCE_TYPE
+  key_name      = aws_key_pair.levelup_key.key_name
+
+  vpc_security_group_ids = [aws_security_group.levelup_webservers.id]
+
+  block_device_mappings {
+    device_name = "/dev/sdf"
+
+    ebs {
+      volume_size = "20"
+      volume_type = "gp2"
+    }
+  }
+
+  tag_specifications {
+    resource_type = "instance"
+    tags = {
+      Name = "LevelUp EC2"
+    }
+  }
+}
+
 
 #################################################
-#                 0. aws_autoscaling_group
+#                 3. aws_autoscaling_group
 #################################################
 resource "aws_autoscaling_group" "levelup_webserver" {
   name                      = "levelup_WebServers"
@@ -104,13 +132,17 @@ resource "aws_autoscaling_group" "levelup_webserver" {
   desired_capacity          = 1
   force_delete              = true
   launch_configuration      = aws_launch_configuration.launch_config_webserver.name
+  launch_template {
+    id      = aws_launch_template.levelup-launchtemplate.id
+    version = "$Latest"
+  }
   vpc_zone_identifier       = ["${var.vpc_public_subnet1}", "${var.vpc_public_subnet2}"]
   target_group_arns         = [aws_lb_target_group.load-balancer-target-group.arn]
 }
 
 
 #################################################
-#                 0. aws_lb
+#                 4. aws_lb
 #################################################
 #Application load balancer for app server
 resource "aws_lb" "levelup-load-balancer" {
@@ -124,7 +156,7 @@ resource "aws_lb" "levelup-load-balancer" {
 
 
 #################################################
-#                 0. aws_lb_target_group
+#                 5. aws_lb_target_group
 #################################################
 # Add Target Group
 resource "aws_lb_target_group" "load-balancer-target-group" {
@@ -136,7 +168,7 @@ resource "aws_lb_target_group" "load-balancer-target-group" {
 
 
 #################################################
-#                 0. aws_lb_listener
+#                 6. aws_lb_listener
 #################################################
 # Adding HTTP listener
 resource "aws_lb_listener" "webserver_listner" {
