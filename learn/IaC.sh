@@ -167,8 +167,8 @@ aws eks create-cluster
     --name levelup-eks 
     --region us-east-2 
     --role-arn arn:aws:iam::164435161465:role/AWSEKS 
-    --resources-vpc-config subnetIds=subnet-0a472d7fc289f93d1, 
-                            subnet-0a78ec2c78371e4b1, 
-                            subnet-0544480e573fdd660, 
-                            subnet-0466f3e84ef0eaf82, 
-    securityGroupIds=sg-0b5c6ef65c5b0b89d
+    --resources-vpc-config subnetIds=subnet-0a472d7fc289f93d1, \
+                            subnet-0a78ec2c78371e4b1, \
+                            subnet-0544480e573fdd660, \
+                            subnet-0466f3e84ef0eaf82, \
+                            securityGroupIds=sg-0b5c6ef65c5b0b89d
