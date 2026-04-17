@@ -1,5 +1,7 @@
 
-
+##################################################################  
+#  1. EKS Cluster
+##################################################################
 resource "aws_eks_cluster" "aws_eks" {
   name     = "eks_cluster_levelup"
   role_arn = aws_iam_role.eks_cluster.arn
@@ -18,6 +20,11 @@ resource "aws_eks_cluster" "aws_eks" {
   }
 }
 
+
+
+##################################################################  
+#  1. EKS Node
+##################################################################
 resource "aws_eks_node_group" "node" {
   cluster_name    = aws_eks_cluster.aws_eks.name
   node_group_name = "node_levelup"
