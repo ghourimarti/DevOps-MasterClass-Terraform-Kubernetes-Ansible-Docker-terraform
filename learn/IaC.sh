@@ -139,7 +139,9 @@ packer build scenario2.json
 
 
 
-################
+############################################################
+#      Section 65: Job Scenario 2 : Terraform Docker and Kubernetes
+############################################################
 terraform plan
 terraform apply # comment out intance creation for vpc, subnet
 # get vpc id, subnet id from aws cloud
@@ -154,3 +156,19 @@ terraform apply
 apt list --installed
 apt list --installed | grep nginx
 apt list --installed | grep docker
+
+
+
+############################################################
+#     Section 66: Job Scenario 3 : Terraform & AWS ELK
+############################################################
+# first create VPC, subnet and securtiy using AWS console, AWS CLI, cloud formation
+aws eks create-cluster 
+    --name levelup-eks 
+    --region us-east-2 
+    --role-arn arn:aws:iam::164435161465:role/AWSEKS 
+    --resources-vpc-config subnetIds=subnet-0a472d7fc289f93d1, 
+                            subnet-0a78ec2c78371e4b1, 
+                            subnet-0544480e573fdd660, 
+                            subnet-0466f3e84ef0eaf82, 
+    securityGroupIds=sg-0b5c6ef65c5b0b89d
