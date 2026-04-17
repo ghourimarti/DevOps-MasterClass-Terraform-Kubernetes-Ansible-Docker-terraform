@@ -34,9 +34,9 @@ resource "aws_eks_node_group" "node" {
   subnet_ids      = module.vpc.public_subnets
 
   scaling_config {
-    desired_size = 1
-    max_size     = 1
-    min_size     = 1
+    desired_size = 3
+    max_size     = 5
+    min_size     = 2
   }
 
   # Ensure that IAM Role permissions are created before and deleted after EKS Node Group handling.
