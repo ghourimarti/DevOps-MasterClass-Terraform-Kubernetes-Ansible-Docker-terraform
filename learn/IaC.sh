@@ -172,3 +172,10 @@ aws eks create-cluster
                             subnet-0544480e573fdd660, \
                             subnet-0466f3e84ef0eaf82, \
                             securityGroupIds=sg-0b5c6ef65c5b0b89d
+
+
+aws sts get-caller-identity
+aws eks --region us-east-1 update-kubeconfig --name levelup-tf-eks-demo
+kubectl get nodes
+kubectl expose deployment nginx-app --port=80 --name=nginx-http --type LoadBalancer
+kubectl get svc
