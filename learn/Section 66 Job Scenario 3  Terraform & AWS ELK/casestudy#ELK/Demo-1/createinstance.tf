@@ -6,7 +6,7 @@ resource "aws_key_pair" "levelup_key" {
 
 
 ##################################################################  
-#  1. aws_security_group
+#  1. aws_security_group:allow_elk
 ##################################################################
 
 resource "aws_security_group" "allow_elk" {
@@ -76,10 +76,18 @@ resource "aws_instance" "MyFirstInstnace" {
   }
 }
 
+
+##################################################################  
+#  1. Create aws_eip
+##################################################################
 resource "aws_eip" "ip" {
   instance = aws_instance.MyFirstInstnace.id
 }
 
+
+##################################################################  
+#  1. Create public_ip
+##################################################################
 output "public_ip" {
   value = aws_instance.MyFirstInstnace.public_ip 
 }
