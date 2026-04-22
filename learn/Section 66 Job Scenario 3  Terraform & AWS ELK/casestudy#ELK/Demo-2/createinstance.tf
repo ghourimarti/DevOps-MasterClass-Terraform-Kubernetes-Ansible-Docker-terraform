@@ -9,7 +9,7 @@ resource "aws_key_pair" "levelup_key" {
 ##################################################################
 
 module "develop-vpc" {
-    source      = "../modules/vpc"
+    source      = "/modules/vpc"
 
     ENVIRONMENT = var.ENVIRONMENT
     AWS_REGION  = var.AWS_REGION
