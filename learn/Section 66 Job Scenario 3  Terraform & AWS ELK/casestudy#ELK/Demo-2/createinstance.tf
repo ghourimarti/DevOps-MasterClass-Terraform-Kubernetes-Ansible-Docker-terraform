@@ -93,11 +93,6 @@ resource "aws_instance" "MyFirstInstnace" {
   }
 
 
-
-
-
-
-
   depends_on = [aws_security_group.allow_elk]
 
   provisioner "file" {
