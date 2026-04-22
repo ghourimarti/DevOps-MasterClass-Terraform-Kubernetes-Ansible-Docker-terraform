@@ -115,13 +115,13 @@ resource "aws_instance" "MyFirstInstnace" {
       destination = "/tmp/installELK.sh"
   }
 
-  provisioner "remote-exec" {
-    inline = [
-      "chmod +x    /tmp/installELK.sh",
-      "sudo sed -i -e 's/\r$//' /tmp/installELK.sh",  # Remove the spurious CR characters.
-      "sudo /tmp/installELK.sh",
-    ]
-  }
+  # provisioner "remote-exec" {
+  #   inline = [
+  #     "chmod +x    /tmp/installELK.sh",
+  #     "sudo sed -i -e 's/\r$//' /tmp/installELK.sh",  # Remove the spurious CR characters.
+  #     "sudo /tmp/installELK.sh",
+  #   ]
+  # }
 
   connection {
     host        = coalesce(self.public_ip, self.private_ip)
