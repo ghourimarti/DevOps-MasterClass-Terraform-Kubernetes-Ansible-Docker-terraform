@@ -4,6 +4,17 @@ resource "aws_key_pair" "levelup_key" {
     public_key = file(var.PATH_TO_PUBLIC_KEY)
 }
 
+##################################################################  
+#  1. vpc
+##################################################################
+
+module "develop-vpc" {
+    source      = "../modules/vpc"
+
+    ENVIRONMENT = var.ENVIRONMENT
+    AWS_REGION  = var.AWS_REGION
+}
+
 
 ##################################################################  
 #  1. aws_security_group:allow_elk
@@ -62,18 +73,32 @@ resource "aws_security_group" "allow_elk" {
 resource "aws_instance" "MyFirstInstnace" {
   ami           = lookup(var.AMIS, var.AWS_REGION)
   instance_type = "t2.micro" # "m4.large"
-  availability_zone = "us-east-1a" # "ap-south-1a"
-  key_name      = aws_key_pair.levelup_key.key_name
 
+  # the VPC subnet
+  subnet_id = element(module.develop-vpc.public_subnets, 0)
+  availability_zone = "${var.AWS_REGION}a"
+
+  # the security group
+  # vpc_security_group_ids = ["${aws_security_group.allow-ssh.id}"]
   vpc_security_group_ids = [
     aws_security_group.allow_elk.id,
   ]
 
-  depends_on = [aws_security_group.allow_elk]
-  
+  # the public SSH key
+  key_name = aws_key_pair.levelup_key.key_name
+
   tags = {
-    Name = "custom_instance"
+    Name         = "instance-${var.ENVIRONMENT}"
+    Environmnent = var.ENVIRONMENT
   }
+
+
+
+
+
+
+
+  depends_on = [aws_security_group.allow_elk]
 
   provisioner "file" {
       source = "elasticsearch.yml"
