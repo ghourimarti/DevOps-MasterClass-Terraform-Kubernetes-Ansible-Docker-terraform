@@ -9,24 +9,16 @@ sudo java -version
 #  1. install Elastic Search
 ##################################################################
 # install elasticsearch
-# wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
-# echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-7.x.list
-# echo "deb https://artifacts.elastic.co/packages/oss-7.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-7.x.list
-wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-9.3.3-linux-x86_64.tar.gz
-wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-9.3.3-linux-x86_64.tar.gz.sha512
-shasum -a 512 -c elasticsearch-9.3.3-linux-x86_64.tar.gz.sha512
-tar -xzf elasticsearch-9.3.3-linux-x86_64.tar.gz
-
-
+wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
+echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-7.x.list
+echo "deb https://artifacts.elastic.co/packages/oss-7.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-7.x.list
 
 sudo apt-get update
 sudo apt-get install elasticsearch -y
 sleep 10
-# sudo mv /tmp/elasticsearch.yml /etc/elasticsearch/elasticsearch.yml
-sudo mv /tmp/elasticsearch.yml /etc/elasticsearch-9.3.3/elasticsearch-9.3.3/config/elasticsearch.yml
+sudo mv /tmp/elasticsearch.yml /etc/elasticsearch/elasticsearch.yml
 
 sudo service elasticsearch start
-sudo service elasticsearch status
 sudo curl http://localhost:9200
 
 
