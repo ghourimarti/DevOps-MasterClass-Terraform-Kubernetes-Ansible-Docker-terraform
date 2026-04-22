@@ -61,8 +61,8 @@ resource "aws_security_group" "allow_elk" {
 # Create AWS Instance
 resource "aws_instance" "MyFirstInstnace" {
   ami           = lookup(var.AMIS, var.AWS_REGION)
-  instance_type = "m4.large"
-  availability_zone = "ap-south-1a"
+  instance_type = "t2.micro" # "m4.large"
+  availability_zone = "us-east-1"
   key_name      = aws_key_pair.levelup_key.key_name
 
   vpc_security_group_ids = [
