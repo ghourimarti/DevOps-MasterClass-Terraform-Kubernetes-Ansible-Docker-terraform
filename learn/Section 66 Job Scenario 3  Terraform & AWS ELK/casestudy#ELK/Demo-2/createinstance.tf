@@ -24,7 +24,7 @@ module "develop-vpc" {
 resource "aws_security_group" "allow_elk" {
   name        = "allow_elk"
   description = "All all elasticsearch traffic"
-
+  vpc_id      = module.develop-vpc.my_vpc_id
   # elasticsearch port
   ingress {
     from_port   = 9200
